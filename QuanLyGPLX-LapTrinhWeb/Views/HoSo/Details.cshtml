@@ -1,0 +1,139 @@
+﻿@model QuanLyGPLX_LapTrinhWeb.Models.HoSo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HoSo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            <img src="@Model.HinhAnh" alt="Hình" style="width: 25%" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaGPLX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaGPLX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DanToc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanToc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuocTich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuocTich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHetHan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HangGPLX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HangGPLX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemLT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemLT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemTH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TTSH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TTSH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "DanhSachHoSo")
+</p>
