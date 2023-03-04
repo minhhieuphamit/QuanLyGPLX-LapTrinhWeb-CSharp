@@ -43,7 +43,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                           join dt in data.DanTocs on ll.MaDT equals dt.MaDT
                           join qt in data.QuocTiches on ll.MaQT equals qt.MaQT
                           join ttsh in data.TrungTamSatHaches on hs.MaTT equals ttsh.MaTT
-                          where hs.MaGPLX.Contains(id)
+                          where hs.MaGPLX == id
                           select new HoSo
                           {
                               HinhAnh = ll.HinhAnh,
