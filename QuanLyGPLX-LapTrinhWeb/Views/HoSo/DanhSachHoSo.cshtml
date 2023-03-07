@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<QuanLyGPLX_LapTrinhWeb.Models.HoSo>
 
 @{
-    ViewBag.Title = "DanhSachHoSo";
+    ViewBag.Title = "Danh sách hồ sơ giấy phép lái xe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -67,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.HangGPLX)
             </td>
             <td class="table-func">
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaGPLX.Trim() }) |
                 @Html.ActionLink("Details", "Details", new { id = item.MaGPLX.Trim() }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaGPLX.Trim() })
             </td>
         </tr>
     }

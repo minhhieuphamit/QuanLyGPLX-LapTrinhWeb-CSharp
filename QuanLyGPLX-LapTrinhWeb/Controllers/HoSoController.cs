@@ -11,6 +11,8 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
     {
         // GET: HoSo
         MyDataDataContext data = new MyDataDataContext();
+
+        /*---------Danh sách hồ sơ---------*/
         public ActionResult DanhSachHoSo()
         {
             var all_HoSo = (from hs in data.HoSoGPLXes
@@ -33,6 +35,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
             return View(all_HoSo);
         }
 
+        /*---------Chi tiết hồ sơ---------*/
         public ActionResult Details(string id)
         {
             var D_HoSo = (from hs in data.HoSoGPLXes
@@ -65,6 +68,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
             return View(D_HoSo);
         }
 
+        /*---------Chỉnh sửa hồ sơ---------*/
         public ActionResult Edit(string id)
         {
             var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
@@ -72,6 +76,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(string id, FormCollection collection)
         {
             var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
@@ -93,9 +98,67 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                 E_MaGPLX.DiemLT = int.Parse(E_DiemLT);
                 E_MaGPLX.DiemTH = int.Parse(E_DiemTH);
                 E_MaGPLX.MaTT = E_MaTT;
+                UpdateModel(E_MaGPLX);
+                data.SubmitChanges();
                 return RedirectToAction("DanhSachHoSo");
             }
             return this.Edit(id);
+        }
+
+        /*---------Xóa hồ sơ---------*/
+        public ActionResult Delete(string id)
+        {
+            var D_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            return View(D_MaGPLX);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string id, FormCollection collection)
+        {
+            var D_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            data.HoSoGPLXes.DeleteOnSubmit(D_MaGPLX);
+            data.SubmitChanges();
+            return RedirectToAction("DanhSachHoSo");
+        }
+
+        /*---------Thêm mới hồ sơ---------*/
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(FormCollection collection)
+        {
+            var C_MaGPLX = collection["MaGPLX"];
+            var C_MaHang = collection["MaHang"];
+            var C_NgayCapGPLX = collection["NgayCapGPLX"];
+            var C_NgayHetHanGPLX = collection["NgayHetHanGPLX"];
+            var C_DiemLT = collection["DiemLT"];
+            var C_DiemTH = collection["DiemTH"];
+            var C_MaTT = collection["MaTT"];
+            var C_SoCCCD = collection["SoCCCD"];
+            if (C_MaGPLX == null)
+            {
+                ViewData["Error"] = "Don't empty";
+            }
+            else
+            {
+                HoSoGPLX hs = new HoSoGPLX();
+                hs.MaGPLX = C_MaGPLX;
+                hs.MaHang = C_MaHang;
+                hs.NgayCapGPLX = DateTime.Parse(C_NgayCapGPLX);
+                hs.NgayHetHanGPLX = DateTime.Parse(C_NgayHetHanGPLX);
+                hs.DiemLT = int.Parse(C_DiemLT);
+                hs.DiemTH = int.Parse(C_DiemTH);
+                hs.MaTT = C_MaTT;
+                hs.SoCCCD = C_SoCCCD;
+                data.HoSoGPLXes.InsertOnSubmit(hs);
+                data.SubmitChanges();
+                return RedirectToAction("DanhSachHoSo");
+            }
+            return this.Create();
         }
     }
 }
