@@ -1,4 +1,5 @@
-﻿using QuanLyGPLX_LapTrinhWeb.Models;
+﻿using Microsoft.Ajax.Utilities;
+using QuanLyGPLX_LapTrinhWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,21 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         /*---------Chỉnh sửa hồ sơ---------*/
         public ActionResult Edit(string id)
         {
+            var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
+            ViewBag.HangGPLX = new SelectList(Hang, "TenHang");
+
+            var TenTTSH = data.TrungTamSatHaches.Select(p => p.TenTT).ToList();
+            ViewBag.TenTTSH = new SelectList(TenTTSH, "TenTT");
+
+            var hinhAnh = (from hs in data.HoSoGPLXes
+                           join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
+                           where hs.MaGPLX == id
+                           select new HoSo
+                           {
+                               HinhAnh = ll.HinhAnh
+                           }).First();
+            ViewBag.HinhAnh = hinhAnh.HinhAnh;
+
             var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
             return View(E_MaGPLX);
         }
@@ -79,13 +95,15 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id, FormCollection collection)
         {
-            var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            var listMaHang = data.HangGPLXes.ToList();
+            var E_MaGPLX = data.HoSoGPLXes.SingleOrDefault(m => m.MaGPLX == id);
             var E_MaHang = collection["MaHang"];
             var E_NgayCapGPLX = collection["NgayCapGPlx"];
             var E_NgayHetHanGPLX = collection["NgayHetHanGPLX"];
             var E_DiemLT = collection["DiemLT"];
             var E_DiemTH = collection["DiemTH"];
-            var E_MaTT = collection["MaTT"];
+            var E_TenTTSH = collection["TenTT"];
+            var E_MaTT = data.TrungTamSatHaches.First(m => m.TenTT == E_TenTTSH).MaTT;
             if (E_MaGPLX == null)
             {
                 ViewData["Error"] = "Don't empty";

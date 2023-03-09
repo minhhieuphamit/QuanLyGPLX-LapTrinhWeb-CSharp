@@ -10,25 +10,28 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Chỉnh sửa hồ sơ</h4>
+        <h4>HoSoGPLX</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaGPLX)
+        <img src="@ViewBag.HinhAnh" alt="Hình" style="width: 70%;">
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoCCCD, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaGPLX, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoCCCD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoCCCD, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaGPLX, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaGPLX, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MaHang, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaHang, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownListFor(model => model.MaHang, (SelectList)ViewBag.HangGPLX, "-- Chọn hạng --", new { @class = "form-control" })*@
+                @*@Html.DropDownList("MaHang", (SelectList)ViewBag.HangGPLX, "Chọn", new { @class = "form-control" })*@
+                @Html.DropDownList("MaHang", ViewBag.HangGPLX as SelectList, "--- Select ---")
                 @Html.ValidationMessageFor(model => model.MaHang, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaTT, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaTT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("TenTT", ViewBag.TenTTSH as SelectList, "--- Select ---")
                 @Html.ValidationMessageFor(model => model.MaTT, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -82,5 +85,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "DanhSachHoSo")
 </div>
