@@ -1,4 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
+using PagedList;
 using QuanLyGPLX_LapTrinhWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,12 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         MyDataDataContext data = new MyDataDataContext();
 
         /*---------Danh sách hồ sơ---------*/
-        public ActionResult DanhSachHoSo()
+        public ActionResult DanhSachHoSo(int? page)
         {
+            if (page == null)
+                page = 1;
+            int pageSize = 5;
+            int pageNum = page ?? 1;
             var all_HoSo = (from hs in data.HoSoGPLXes
                             join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
                             join px in data.PhuongXas on ll.DiaChi equals px.MaPX
@@ -33,7 +38,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                                 NgayHetHan = String.Format("{0:dd/MM/yyyy}", hs.NgayHetHanGPLX),
                                 HangGPLX = hs.MaHang
                             });
-            return View(all_HoSo);
+            return View(all_HoSo.ToPagedList(pageNum, pageSize));
         }
 
         /*---------Chi tiết hồ sơ---------*/
@@ -140,8 +145,26 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         }
 
         /*---------Thêm mới hồ sơ---------*/
+        [HttpPost]
+        public JsonResult GetSoCCCD(string Prefix)
+        {
+            var SoCCCD = (from CCCD in data.LyLiches
+                          where CCCD.SoCCCD.StartsWith(Prefix)
+                          select new
+                          {
+                              CCCD.SoCCCD
+                          }).ToList();
+            return Json(SoCCCD, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Create()
         {
+            var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
+            ViewBag.HangGPLX = new SelectList(Hang, "TenHang");
+
+            var TenTTSH = data.TrungTamSatHaches.Select(p => p.TenTT).ToList();
+            ViewBag.TenTTSH = new SelectList(TenTTSH, "TenTT");
+
             return View();
         }
 
@@ -149,21 +172,24 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
         {
+            var C_SoCCCD = collection["SoCCCD"];
             var C_MaGPLX = collection["MaGPLX"];
             var C_MaHang = collection["MaHang"];
             var C_NgayCapGPLX = collection["NgayCapGPLX"];
             var C_NgayHetHanGPLX = collection["NgayHetHanGPLX"];
             var C_DiemLT = collection["DiemLT"];
             var C_DiemTH = collection["DiemTH"];
-            var C_MaTT = collection["MaTT"];
-            var C_SoCCCD = collection["SoCCCD"];
-            if (C_MaGPLX == null)
+            var C_TenTT = collection["TenTT"];
+            if (C_MaGPLX == "" || C_MaHang == null || C_NgayCapGPLX == null || C_NgayHetHanGPLX == null || C_DiemLT == null || C_DiemTH == null || C_TenTT == null)
             {
                 ViewData["Error"] = "Don't empty";
             }
+
             else
             {
+                var C_MaTT = data.TrungTamSatHaches.First(m => m.TenTT == C_TenTT).MaTT;
                 HoSoGPLX hs = new HoSoGPLX();
+                hs.SoCCCD = C_SoCCCD;
                 hs.MaGPLX = C_MaGPLX;
                 hs.MaHang = C_MaHang;
                 hs.NgayCapGPLX = DateTime.Parse(C_NgayCapGPLX);
@@ -171,7 +197,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                 hs.DiemLT = int.Parse(C_DiemLT);
                 hs.DiemTH = int.Parse(C_DiemTH);
                 hs.MaTT = C_MaTT;
-                hs.SoCCCD = C_SoCCCD;
                 data.HoSoGPLXes.InsertOnSubmit(hs);
                 data.SubmitChanges();
                 return RedirectToAction("DanhSachHoSo");

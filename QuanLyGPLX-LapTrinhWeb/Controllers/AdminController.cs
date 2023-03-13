@@ -19,6 +19,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         {
             if (username == "admin" && password == "admin")
             {
+                Session["username"] = username;
                 return RedirectToAction("DanhSachHoSo", "HoSo");
             }
             else
@@ -27,5 +28,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                 return View();
             }
         }
+
     }
 }

@@ -1,8 +1,13 @@
-﻿@model IEnumerable<QuanLyGPLX_LapTrinhWeb.Models.HoSo>
-
+﻿@model PagedList.IPagedList<QuanLyGPLX_LapTrinhWeb.Models.HoSo>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Danh sách hồ sơ giấy phép lái xe";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["username"] == null)
+{
+    Response.Redirect("/Admin/Login");
 }
 
 <h2>Danh Sách Hồ Sơ</h2>
@@ -13,28 +18,28 @@
 <table class="table">
     <tr style="white-space:nowrap">
         <th>
-            @Html.DisplayNameFor(model => model.MaGPLX)
+            Mã GPLX
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoTen)
+            Họ và tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgaySinh)
+            Ngày sinh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GioiTinh)
+            Giới tính
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgayCap)
+            Ngày cấp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgayHetHan)
+            Ngày hết hạn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HangGPLX)
+            Hạng GPLX
         </th>
         <th></th>
     </tr>
@@ -74,3 +79,78 @@
         </tr>
     }
 </table>
+
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="d-flex justify-content-center">
+        <ul class="pagination mt-3 mb-0">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("DanhSachHoSo", "HoSo", new { page = 1 })">‹‹</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">‹‹</a>
+                </li>
+            }
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageNumber - 1 })">‹</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">‹</a>
+                </li>
+            }
+
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                if (i == Model.PageNumber)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = i })">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = i })">@i</a>
+                    </li>
+                }
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageNumber + 1 })">›</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">›</a>
+                </li>
+            }
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageCount })">››</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">››</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

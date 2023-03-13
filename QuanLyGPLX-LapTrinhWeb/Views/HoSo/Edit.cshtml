@@ -34,12 +34,12 @@
                                 <div class="row">
                                     <div class="col-md-6 gx-3 mb-3">
                                         <label class="small mb-1">@Html.DisplayNameFor(model => model.MaHang)</label>
-                                        @Html.DropDownList("MaHang", ViewBag.HangGPLX as SelectList, "--- Select ---", new { @class = "form-control" })
+                                        @Html.DropDownList("MaHang", ViewBag.HangGPLX as SelectList, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MaHang, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-6 gx-3 mb-3">
                                         <label class="small mb-1">@Html.DisplayNameFor(model => model.NgayCapGPLX)</label>
-                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                                         @Html.ValidationMessageFor(model => model.NgayCapGPLX, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -47,12 +47,12 @@
                                 <div class="row">
                                     <div class="col-md-6 gx-3 mb-3">
                                         <label class="small mb-1">@Html.DisplayNameFor(model => model.NgayHetHanGPLX)</label>
-                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                                         @Html.ValidationMessageFor(model => model.NgayHetHanGPLX, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-6 gx-3 mb-3">
                                         <label class="small mb-1">@Html.DisplayNameFor(model => model.MaTT)</label>
-                                        @Html.DropDownList("TenTT", ViewBag.TenTTSH as SelectList, "--- Select ---", new { @class = "form-control" })
+                                        @Html.DropDownList("TenTT", ViewBag.TenTTSH as SelectList, "--Select--", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MaTT, "", new { @class = "text-danger" })
                                     </div>
                                 </div>

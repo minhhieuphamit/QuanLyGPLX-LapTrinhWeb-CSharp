@@ -1,0 +1,81 @@
+﻿@model QuanLyGPLX_LapTrinhWeb.Models.HoSoGPLX
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HoSoGPLX</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoCCCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoCCCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCapGPLX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCapGPLX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayHetHanGPLX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayHetHanGPLX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemLT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemLT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemTH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
