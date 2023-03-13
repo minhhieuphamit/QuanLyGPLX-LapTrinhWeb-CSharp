@@ -62,7 +62,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         partial void DeleteHangGPLX(HangGPLX instance);
         #endregion
         public MyDataDataContext() :
-                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["cnpmConnectionString"].ConnectionString, mappingSource)
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLGPLXConnectionString"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
