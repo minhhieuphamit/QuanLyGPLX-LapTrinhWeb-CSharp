@@ -8,23 +8,30 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
 {
     public class HomeController : Controller
     {
+        // GET: Home
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(string username, string password)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (username == "admin" && password == "admin")
+            {
+                Session["username"] = username;
+                return RedirectToAction("DanhSachHoSo", "Admin/HoSo");
+            }
+            else
+            {
+                TempData["error"] = "Sai tên đăng nhập hoặc mật khẩu";
+                return View();
+            }
         }
     }
 }

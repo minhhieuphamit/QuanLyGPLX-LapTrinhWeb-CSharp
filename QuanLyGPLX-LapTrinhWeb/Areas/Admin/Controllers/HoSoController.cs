@@ -1,5 +1,4 @@
-﻿using Microsoft.Ajax.Utilities;
-using PagedList;
+﻿using PagedList;
 using QuanLyGPLX_LapTrinhWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -7,11 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QuanLyGPLX_LapTrinhWeb.Controllers
+namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 {
     public class HoSoController : Controller
     {
-        // GET: HoSo
+        // GET: Admin/HoSo
         MyDataDataContext data = new MyDataDataContext();
 
         /*---------Danh sách hồ sơ---------*/
@@ -40,7 +39,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                             });
             return View(all_HoSo.ToPagedList(pageNum, pageSize));
         }
-
+        
         /*---------Chi tiết hồ sơ---------*/
         public ActionResult Details(string id)
         {

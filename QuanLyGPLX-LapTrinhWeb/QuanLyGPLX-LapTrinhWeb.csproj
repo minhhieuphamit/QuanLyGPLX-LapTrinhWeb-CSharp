@@ -143,9 +143,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoSoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HoSoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -308,6 +308,12 @@
     <Content Include="Content\Login\scss\bootstrap\_utilities.scss" />
     <Content Include="Content\Login\scss\bootstrap\_variables.scss" />
     <Content Include="Content\Login\scss\style.scss" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\HoSo\DanhSachHoSo.cshtml" />
+    <Content Include="Areas\Admin\Views\HoSo\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoSo\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoSo\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoSo\Delete.cshtml" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
@@ -330,18 +336,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\HoSo\Details.cshtml" />
-    <Content Include="Views\HoSo\DanhSachHoSo.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\HoSo\Edit.cshtml" />
-    <Content Include="Views\HoSo\Create.cshtml" />
-    <Content Include="Views\HoSo\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
