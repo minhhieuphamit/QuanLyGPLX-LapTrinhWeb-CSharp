@@ -10,11 +10,11 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
     {
         [DisplayName("Hình ảnh")]
         public string HinhAnh { get; set; }
-        [DisplayName("Mã GPLX")]
+        [DisplayName("Mã giấy phép lái xe")]
         public string MaGPLX { get; set; }
         [DisplayName("Họ và tên")]
         public string HoTen { get; set; }
-        [DisplayName("Ngày/Tháng/Năm")]
+        [DisplayName("Ngày sinh")]
         public string NgaySinh { get; set; }
         [DisplayName("Giới tính")]
         public string GioiTinh { get; set; }
@@ -30,7 +30,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         public string NgayCap { get; set; }
         [DisplayName("Ngày hết hạn")]
         public string NgayHetHan { get; set; }
-        [DisplayName("Hạng GPLX")]
+        [DisplayName("Hạng giấy phép lái xe")]
         public string HangGPLX { get; set; }
         [DisplayName("Điểm lý thuyết")]
         public string DiemLT { get; set; }

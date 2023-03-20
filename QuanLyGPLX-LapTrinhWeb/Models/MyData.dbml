@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="cnpm" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLGPLX" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.TrungTamSatHach" Member="TrungTamSatHaches">
     <Type Name="TrungTamSatHach">
       <Column Name="MaTT" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -65,21 +65,6 @@
       <Association Name="DanToc_LyLich" Member="DanToc" ThisKey="MaDT" OtherKey="MaDT" Type="DanToc" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.HoSoGPLX" Member="HoSoGPLXes">
-    <Type Name="HoSoGPLX">
-      <Column Name="MaGPLX" Type="System.String" DbType="Char(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoCCCD" Type="System.String" DbType="Char(12)" CanBeNull="true" />
-      <Column Name="MaHang" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="NgayCapGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NgayHetHanGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="MaTT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="DiemLT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DiemTH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="TrungTamSatHach_HoSoGPLX" Member="TrungTamSatHach" ThisKey="MaTT" OtherKey="MaTT" Type="TrungTamSatHach" IsForeignKey="true" />
-      <Association Name="LyLich_HoSoGPLX" Member="LyLich" ThisKey="SoCCCD" OtherKey="SoCCCD" Type="LyLich" IsForeignKey="true" />
-      <Association Name="HangGPLX_HoSoGPLX" Member="HangGPLX" ThisKey="MaHang" OtherKey="MaHang" Type="HangGPLX" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.DanToc" Member="DanTocs">
     <Type Name="DanToc">
       <Column Name="MaDT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -96,6 +81,22 @@
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ThoiHanSuDung" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="HangGPLX_HoSoGPLX" Member="HoSoGPLXes" ThisKey="MaHang" OtherKey="MaHang" Type="HoSoGPLX" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoSoGPLX" Member="HoSoGPLXes">
+    <Type Name="HoSoGPLX">
+      <Column Name="MaGPLX" Type="System.String" DbType="Char(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoCCCD" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="MaHang" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="NgayCapGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NgayHetHanGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaTT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="DiemLT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiemTH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TrungTamSatHach_HoSoGPLX" Member="TrungTamSatHach" ThisKey="MaTT" OtherKey="MaTT" Type="TrungTamSatHach" IsForeignKey="true" />
+      <Association Name="HangGPLX_HoSoGPLX" Member="HangGPLX" ThisKey="MaHang" OtherKey="MaHang" Type="HangGPLX" IsForeignKey="true" />
+      <Association Name="LyLich_HoSoGPLX" Member="LyLich" ThisKey="SoCCCD" OtherKey="SoCCCD" Type="LyLich" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

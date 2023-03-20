@@ -2,6 +2,7 @@
 using QuanLyGPLX_LapTrinhWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,32 +15,58 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
         MyDataDataContext data = new MyDataDataContext();
 
         /*---------Danh sách hồ sơ---------*/
-        public ActionResult DanhSachHoSo(int? page)
+        public ActionResult DanhSachHoSo(int? page, string search)
         {
             if (page == null)
                 page = 1;
             int pageSize = 5;
             int pageNum = page ?? 1;
-            var all_HoSo = (from hs in data.HoSoGPLXes
-                            join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
-                            join px in data.PhuongXas on ll.DiaChi equals px.MaPX
-                            join qh in data.QuanHuyens on px.MaHuyen equals qh.MaHuyen
-                            join t in data.TinhTPs on qh.MaTinh equals t.MaTinh
-                            orderby ll.Ten, ll.HoLot ascending
-                            select new HoSo
-                            {
-                                MaGPLX = hs.MaGPLX,
-                                HoTen = ll.HoLot + " " + ll.Ten,
-                                NgaySinh = String.Format("{0:dd/MM/yyyy}", ll.NgaySinh),
-                                GioiTinh = ll.GioiTinh,
-                                DiaChi = px.TenPX + ", " + qh.TenHuyen + ", " + t.TenTinh,
-                                NgayCap = String.Format("{0:dd/MM/yyyy}", hs.NgayCapGPLX),
-                                NgayHetHan = String.Format("{0:dd/MM/yyyy}", hs.NgayHetHanGPLX),
-                                HangGPLX = hs.MaHang
-                            });
-            return View(all_HoSo.ToPagedList(pageNum, pageSize));
+            if (search == null)
+            {
+                var all_HoSo = (from hs in data.HoSoGPLXes
+                                join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
+                                join px in data.PhuongXas on ll.DiaChi equals px.MaPX
+                                join qh in data.QuanHuyens on px.MaHuyen equals qh.MaHuyen
+                                join t in data.TinhTPs on qh.MaTinh equals t.MaTinh
+                                orderby ll.Ten, ll.HoLot ascending
+                                select new HoSo
+                                {
+                                    MaGPLX = hs.MaGPLX,
+                                    HoTen = ll.HoLot + " " + ll.Ten,
+                                    NgaySinh = String.Format("{0:dd/MM/yyyy}", ll.NgaySinh),
+                                    GioiTinh = ll.GioiTinh,
+                                    DiaChi = px.TenPX + ", " + qh.TenHuyen + ", " + t.TenTinh,
+                                    NgayCap = String.Format("{0:dd/MM/yyyy}", hs.NgayCapGPLX),
+                                    NgayHetHan = String.Format("{0:dd/MM/yyyy}", hs.NgayHetHanGPLX),
+                                    HangGPLX = hs.MaHang
+                                });
+                return View(all_HoSo.ToPagedList(pageNum, pageSize));
+            }
+            else
+            {
+                var all_HoSo = (from hs in data.HoSoGPLXes
+                                join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
+                                join px in data.PhuongXas on ll.DiaChi equals px.MaPX
+                                join qh in data.QuanHuyens on px.MaHuyen equals qh.MaHuyen
+                                join t in data.TinhTPs on qh.MaTinh equals t.MaTinh
+                                orderby ll.Ten, ll.HoLot ascending
+                                where hs.MaGPLX.Contains(search)
+                                select new HoSo
+                                {
+                                    MaGPLX = hs.MaGPLX,
+                                    HoTen = ll.HoLot + " " + ll.Ten,
+                                    NgaySinh = String.Format("{0:dd/MM/yyyy}", ll.NgaySinh),
+                                    GioiTinh = ll.GioiTinh,
+                                    DiaChi = px.TenPX + ", " + qh.TenHuyen + ", " + t.TenTinh,
+                                    NgayCap = String.Format("{0:dd/MM/yyyy}", hs.NgayCapGPLX),
+                                    NgayHetHan = String.Format("{0:dd/MM/yyyy}", hs.NgayHetHanGPLX),
+                                    HangGPLX = hs.MaHang
+                                });
+                return View(all_HoSo.ToPagedList(pageNum, pageSize));
+            }
+
         }
-        
+
         /*---------Chi tiết hồ sơ---------*/
         public ActionResult Details(string id)
         {
@@ -54,7 +81,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
                           where hs.MaGPLX == id
                           select new HoSo
                           {
-                              HinhAnh = ll.HinhAnh,
+                              HinhAnh = hs.HinhAnh,
                               MaGPLX = hs.MaGPLX,
                               HoTen = ll.HoLot + " " + ll.Ten,
                               NgaySinh = String.Format("{0:dd/MM/yyyy}", ll.NgaySinh),
@@ -79,19 +106,15 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
             ViewBag.HangGPLX = new SelectList(Hang, "TenHang");
 
-            var TenTTSH = data.TrungTamSatHaches.Select(p => p.TenTT).ToList();
-            ViewBag.TenTTSH = new SelectList(TenTTSH, "TenTT");
-
-            var hinhAnh = (from hs in data.HoSoGPLXes
-                           join ll in data.LyLiches on hs.SoCCCD equals ll.SoCCCD
-                           where hs.MaGPLX == id
-                           select new HoSo
-                           {
-                               HinhAnh = ll.HinhAnh
-                           }).First();
-            ViewBag.HinhAnh = hinhAnh.HinhAnh;
+            var TenTTSH = data.TrungTamSatHaches.Select(p => new { p.MaTT, p.TenTT }).ToList();
+            ViewBag.TenTTSH = new SelectList(TenTTSH, "MaTT", "TenTT", data.HoSoGPLXes.Where(p => p.MaGPLX == id).Select(p => p.MaTT).First());
 
             var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            var E_NgayCap = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            ViewBag.NgayCap = String.Format("{0:dd/MM/yyyy}", E_NgayCap.NgayCapGPLX);
+
+            var E_NgayHetHan = data.HoSoGPLXes.First(m => m.MaGPLX == id);
+            ViewBag.NgayHetHan = String.Format("{0:dd/MM/yyyy}", E_NgayHetHan.NgayHetHanGPLX);
             return View(E_MaGPLX);
         }
 
@@ -99,28 +122,28 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id, FormCollection collection)
         {
-            var listMaHang = data.HangGPLXes.ToList();
-            var E_MaGPLX = data.HoSoGPLXes.SingleOrDefault(m => m.MaGPLX == id);
+            var E_GPLX = data.HoSoGPLXes.SingleOrDefault(m => m.MaGPLX == id);
             var E_MaHang = collection["MaHang"];
-            var E_NgayCapGPLX = collection["NgayCapGPlx"];
-            var E_NgayHetHanGPLX = collection["NgayHetHanGPLX"];
+            var E_HinhAnh = collection["HinhAnh"];
+            var E_NgayCap = collection["NgayCapGPLX"];
+            var E_NgayHetHan = collection["NgayHetHanGPLX"];
             var E_DiemLT = collection["DiemLT"];
             var E_DiemTH = collection["DiemTH"];
-            var E_TenTTSH = collection["TenTT"];
-            var E_MaTT = data.TrungTamSatHaches.First(m => m.TenTT == E_TenTTSH).MaTT;
-            if (E_MaGPLX == null)
+            var E_MaTTSH = collection["TenTT"];
+            if (E_GPLX == null)
             {
                 ViewData["Error"] = "Don't empty";
             }
             else
             {
-                E_MaGPLX.MaHang = E_MaHang;
-                E_MaGPLX.NgayCapGPLX = DateTime.Parse(E_NgayCapGPLX);
-                E_MaGPLX.NgayHetHanGPLX = DateTime.Parse(E_NgayHetHanGPLX);
-                E_MaGPLX.DiemLT = int.Parse(E_DiemLT);
-                E_MaGPLX.DiemTH = int.Parse(E_DiemTH);
-                E_MaGPLX.MaTT = E_MaTT;
-                UpdateModel(E_MaGPLX);
+                E_GPLX.MaHang = E_MaHang;
+                E_GPLX.HinhAnh = E_HinhAnh;
+                E_GPLX.NgayCapGPLX = DateTime.ParseExact(E_NgayCap, "MM/dd/yyyy", null);
+                E_GPLX.NgayHetHanGPLX = DateTime.ParseExact(E_NgayHetHan, "MM/dd/yyyy", null);
+                E_GPLX.DiemLT = int.Parse(E_DiemLT);
+                E_GPLX.DiemTH = int.Parse(E_DiemTH);
+                E_GPLX.MaTT = E_MaTTSH;
+                TryUpdateModel(E_GPLX);
                 data.SubmitChanges();
                 return RedirectToAction("DanhSachHoSo");
             }
@@ -201,6 +224,17 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
                 return RedirectToAction("DanhSachHoSo");
             }
             return this.Create();
+        }
+
+        /*---------Upload hình ảnh hồ sơ---------*/
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
         }
     }
 }

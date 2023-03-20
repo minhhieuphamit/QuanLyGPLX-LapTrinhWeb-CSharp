@@ -22,7 +22,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
     using System;
 
 
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "cnpm")]
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "QLGPLX")]
     public partial class MyDataDataContext : System.Data.Linq.DataContext
     {
 
@@ -51,16 +51,17 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         partial void InsertLyLich(LyLich instance);
         partial void UpdateLyLich(LyLich instance);
         partial void DeleteLyLich(LyLich instance);
-        partial void InsertHoSoGPLX(HoSoGPLX instance);
-        partial void UpdateHoSoGPLX(HoSoGPLX instance);
-        partial void DeleteHoSoGPLX(HoSoGPLX instance);
         partial void InsertDanToc(DanToc instance);
         partial void UpdateDanToc(DanToc instance);
         partial void DeleteDanToc(DanToc instance);
         partial void InsertHangGPLX(HangGPLX instance);
         partial void UpdateHangGPLX(HangGPLX instance);
         partial void DeleteHangGPLX(HangGPLX instance);
+        partial void InsertHoSoGPLX(HoSoGPLX instance);
+        partial void UpdateHoSoGPLX(HoSoGPLX instance);
+        partial void DeleteHoSoGPLX(HoSoGPLX instance);
         #endregion
+
         public MyDataDataContext() :
                 base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLGPLXConnectionString"].ConnectionString, mappingSource)
         {
@@ -147,14 +148,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
             }
         }
 
-        public System.Data.Linq.Table<HoSoGPLX> HoSoGPLXes
-        {
-            get
-            {
-                return this.GetTable<HoSoGPLX>();
-            }
-        }
-
         public System.Data.Linq.Table<DanToc> DanTocs
         {
             get
@@ -168,6 +161,14 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
             get
             {
                 return this.GetTable<HangGPLX>();
+            }
+        }
+
+        public System.Data.Linq.Table<HoSoGPLX> HoSoGPLXes
+        {
+            get
+            {
+                return this.GetTable<HoSoGPLX>();
             }
         }
     }
@@ -1480,359 +1481,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         }
     }
 
-    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.HoSoGPLX")]
-    public partial class HoSoGPLX : INotifyPropertyChanging, INotifyPropertyChanged
-    {
-
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-
-        private string _MaGPLX;
-
-        private string _SoCCCD;
-
-        private string _MaHang;
-
-        private System.Nullable<System.DateTime> _NgayCapGPLX;
-
-        private System.Nullable<System.DateTime> _NgayHetHanGPLX;
-
-        private string _MaTT;
-
-        private System.Nullable<int> _DiemLT;
-
-        private System.Nullable<int> _DiemTH;
-
-        private EntityRef<TrungTamSatHach> _TrungTamSatHach;
-
-        private EntityRef<LyLich> _LyLich;
-
-        private EntityRef<HangGPLX> _HangGPLX;
-
-        #region Extensibility Method Definitions
-        partial void OnLoaded();
-        partial void OnValidate(System.Data.Linq.ChangeAction action);
-        partial void OnCreated();
-        partial void OnMaGPLXChanging(string value);
-        partial void OnMaGPLXChanged();
-        partial void OnSoCCCDChanging(string value);
-        partial void OnSoCCCDChanged();
-        partial void OnMaHangChanging(string value);
-        partial void OnMaHangChanged();
-        partial void OnNgayCapGPLXChanging(System.Nullable<System.DateTime> value);
-        partial void OnNgayCapGPLXChanged();
-        partial void OnNgayHetHanGPLXChanging(System.Nullable<System.DateTime> value);
-        partial void OnNgayHetHanGPLXChanged();
-        partial void OnMaTTChanging(string value);
-        partial void OnMaTTChanged();
-        partial void OnDiemLTChanging(System.Nullable<int> value);
-        partial void OnDiemLTChanged();
-        partial void OnDiemTHChanging(System.Nullable<int> value);
-        partial void OnDiemTHChanged();
-        #endregion
-
-        public HoSoGPLX()
-        {
-            this._TrungTamSatHach = default(EntityRef<TrungTamSatHach>);
-            this._LyLich = default(EntityRef<LyLich>);
-            this._HangGPLX = default(EntityRef<HangGPLX>);
-            OnCreated();
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaGPLX", DbType = "Char(12) NOT NULL", CanBeNull = false, IsPrimaryKey = true)]
-        public string MaGPLX
-        {
-            get
-            {
-                return this._MaGPLX;
-            }
-            set
-            {
-                if ((this._MaGPLX != value))
-                {
-                    this.OnMaGPLXChanging(value);
-                    this.SendPropertyChanging();
-                    this._MaGPLX = value;
-                    this.SendPropertyChanged("MaGPLX");
-                    this.OnMaGPLXChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoCCCD", DbType = "Char(12)")]
-        public string SoCCCD
-        {
-            get
-            {
-                return this._SoCCCD;
-            }
-            set
-            {
-                if ((this._SoCCCD != value))
-                {
-                    if (this._LyLich.HasLoadedOrAssignedValue)
-                    {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-                    }
-                    this.OnSoCCCDChanging(value);
-                    this.SendPropertyChanging();
-                    this._SoCCCD = value;
-                    this.SendPropertyChanged("SoCCCD");
-                    this.OnSoCCCDChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaHang", DbType = "Char(3)")]
-        public string MaHang
-        {
-            get
-            {
-                return this._MaHang;
-            }
-            set
-            {
-                if ((this._MaHang != value))
-                {
-                    if (this._HangGPLX.HasLoadedOrAssignedValue)
-                    {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-                    }
-                    this.OnMaHangChanging(value);
-                    this.SendPropertyChanging();
-                    this._MaHang = value;
-                    this.SendPropertyChanged("MaHang");
-                    this.OnMaHangChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgayCapGPLX", DbType = "Date")]
-        public System.Nullable<System.DateTime> NgayCapGPLX
-        {
-            get
-            {
-                return this._NgayCapGPLX;
-            }
-            set
-            {
-                if ((this._NgayCapGPLX != value))
-                {
-                    this.OnNgayCapGPLXChanging(value);
-                    this.SendPropertyChanging();
-                    this._NgayCapGPLX = value;
-                    this.SendPropertyChanged("NgayCapGPLX");
-                    this.OnNgayCapGPLXChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgayHetHanGPLX", DbType = "Date")]
-        public System.Nullable<System.DateTime> NgayHetHanGPLX
-        {
-            get
-            {
-                return this._NgayHetHanGPLX;
-            }
-            set
-            {
-                if ((this._NgayHetHanGPLX != value))
-                {
-                    this.OnNgayHetHanGPLXChanging(value);
-                    this.SendPropertyChanging();
-                    this._NgayHetHanGPLX = value;
-                    this.SendPropertyChanged("NgayHetHanGPLX");
-                    this.OnNgayHetHanGPLXChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaTT", DbType = "Char(10)")]
-        public string MaTT
-        {
-            get
-            {
-                return this._MaTT;
-            }
-            set
-            {
-                if ((this._MaTT != value))
-                {
-                    if (this._TrungTamSatHach.HasLoadedOrAssignedValue)
-                    {
-                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-                    }
-                    this.OnMaTTChanging(value);
-                    this.SendPropertyChanging();
-                    this._MaTT = value;
-                    this.SendPropertyChanged("MaTT");
-                    this.OnMaTTChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DiemLT", DbType = "Int")]
-        public System.Nullable<int> DiemLT
-        {
-            get
-            {
-                return this._DiemLT;
-            }
-            set
-            {
-                if ((this._DiemLT != value))
-                {
-                    this.OnDiemLTChanging(value);
-                    this.SendPropertyChanging();
-                    this._DiemLT = value;
-                    this.SendPropertyChanged("DiemLT");
-                    this.OnDiemLTChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DiemTH", DbType = "Int")]
-        public System.Nullable<int> DiemTH
-        {
-            get
-            {
-                return this._DiemTH;
-            }
-            set
-            {
-                if ((this._DiemTH != value))
-                {
-                    this.OnDiemTHChanging(value);
-                    this.SendPropertyChanging();
-                    this._DiemTH = value;
-                    this.SendPropertyChanged("DiemTH");
-                    this.OnDiemTHChanged();
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "TrungTamSatHach_HoSoGPLX", Storage = "_TrungTamSatHach", ThisKey = "MaTT", OtherKey = "MaTT", IsForeignKey = true)]
-        public TrungTamSatHach TrungTamSatHach
-        {
-            get
-            {
-                return this._TrungTamSatHach.Entity;
-            }
-            set
-            {
-                TrungTamSatHach previousValue = this._TrungTamSatHach.Entity;
-                if (((previousValue != value)
-                            || (this._TrungTamSatHach.HasLoadedOrAssignedValue == false)))
-                {
-                    this.SendPropertyChanging();
-                    if ((previousValue != null))
-                    {
-                        this._TrungTamSatHach.Entity = null;
-                        previousValue.HoSoGPLXes.Remove(this);
-                    }
-                    this._TrungTamSatHach.Entity = value;
-                    if ((value != null))
-                    {
-                        value.HoSoGPLXes.Add(this);
-                        this._MaTT = value.MaTT;
-                    }
-                    else
-                    {
-                        this._MaTT = default(string);
-                    }
-                    this.SendPropertyChanged("TrungTamSatHach");
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "LyLich_HoSoGPLX", Storage = "_LyLich", ThisKey = "SoCCCD", OtherKey = "SoCCCD", IsForeignKey = true)]
-        public LyLich LyLich
-        {
-            get
-            {
-                return this._LyLich.Entity;
-            }
-            set
-            {
-                LyLich previousValue = this._LyLich.Entity;
-                if (((previousValue != value)
-                            || (this._LyLich.HasLoadedOrAssignedValue == false)))
-                {
-                    this.SendPropertyChanging();
-                    if ((previousValue != null))
-                    {
-                        this._LyLich.Entity = null;
-                        previousValue.HoSoGPLXes.Remove(this);
-                    }
-                    this._LyLich.Entity = value;
-                    if ((value != null))
-                    {
-                        value.HoSoGPLXes.Add(this);
-                        this._SoCCCD = value.SoCCCD;
-                    }
-                    else
-                    {
-                        this._SoCCCD = default(string);
-                    }
-                    this.SendPropertyChanged("LyLich");
-                }
-            }
-        }
-
-        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "HangGPLX_HoSoGPLX", Storage = "_HangGPLX", ThisKey = "MaHang", OtherKey = "MaHang", IsForeignKey = true)]
-        public HangGPLX HangGPLX
-        {
-            get
-            {
-                return this._HangGPLX.Entity;
-            }
-            set
-            {
-                HangGPLX previousValue = this._HangGPLX.Entity;
-                if (((previousValue != value)
-                            || (this._HangGPLX.HasLoadedOrAssignedValue == false)))
-                {
-                    this.SendPropertyChanging();
-                    if ((previousValue != null))
-                    {
-                        this._HangGPLX.Entity = null;
-                        previousValue.HoSoGPLXes.Remove(this);
-                    }
-                    this._HangGPLX.Entity = value;
-                    if ((value != null))
-                    {
-                        value.HoSoGPLXes.Add(this);
-                        this._MaHang = value.MaHang;
-                    }
-                    else
-                    {
-                        this._MaHang = default(string);
-                    }
-                    this.SendPropertyChanged("HangGPLX");
-                }
-            }
-        }
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void SendPropertyChanging()
-        {
-            if ((this.PropertyChanging != null))
-            {
-                this.PropertyChanging(this, emptyChangingEventArgs);
-            }
-        }
-
-        protected virtual void SendPropertyChanged(String propertyName)
-        {
-            if ((this.PropertyChanged != null))
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.DanToc")]
     public partial class DanToc : INotifyPropertyChanging, INotifyPropertyChanged
     {
@@ -2154,6 +1802,383 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         {
             this.SendPropertyChanging();
             entity.HangGPLX = null;
+        }
+    }
+
+    [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.HoSoGPLX")]
+    public partial class HoSoGPLX : INotifyPropertyChanging, INotifyPropertyChanged
+    {
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+
+        private string _MaGPLX;
+
+        private string _HinhAnh;
+
+        private string _SoCCCD;
+
+        private string _MaHang;
+
+        private System.Nullable<System.DateTime> _NgayCapGPLX;
+
+        private System.Nullable<System.DateTime> _NgayHetHanGPLX;
+
+        private string _MaTT;
+
+        private System.Nullable<int> _DiemLT;
+
+        private System.Nullable<int> _DiemTH;
+
+        private EntityRef<TrungTamSatHach> _TrungTamSatHach;
+
+        private EntityRef<HangGPLX> _HangGPLX;
+
+        private EntityRef<LyLich> _LyLich;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+        partial void OnMaGPLXChanging(string value);
+        partial void OnMaGPLXChanged();
+        partial void OnHinhAnhChanging(string value);
+        partial void OnHinhAnhChanged();
+        partial void OnSoCCCDChanging(string value);
+        partial void OnSoCCCDChanged();
+        partial void OnMaHangChanging(string value);
+        partial void OnMaHangChanged();
+        partial void OnNgayCapGPLXChanging(System.Nullable<System.DateTime> value);
+        partial void OnNgayCapGPLXChanged();
+        partial void OnNgayHetHanGPLXChanging(System.Nullable<System.DateTime> value);
+        partial void OnNgayHetHanGPLXChanged();
+        partial void OnMaTTChanging(string value);
+        partial void OnMaTTChanged();
+        partial void OnDiemLTChanging(System.Nullable<int> value);
+        partial void OnDiemLTChanged();
+        partial void OnDiemTHChanging(System.Nullable<int> value);
+        partial void OnDiemTHChanged();
+        #endregion
+
+        public HoSoGPLX()
+        {
+            this._TrungTamSatHach = default(EntityRef<TrungTamSatHach>);
+            this._HangGPLX = default(EntityRef<HangGPLX>);
+            this._LyLich = default(EntityRef<LyLich>);
+            OnCreated();
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaGPLX", DbType = "Char(12) NOT NULL", CanBeNull = false, IsPrimaryKey = true)]
+        public string MaGPLX
+        {
+            get
+            {
+                return this._MaGPLX;
+            }
+            set
+            {
+                if ((this._MaGPLX != value))
+                {
+                    this.OnMaGPLXChanging(value);
+                    this.SendPropertyChanging();
+                    this._MaGPLX = value;
+                    this.SendPropertyChanged("MaGPLX");
+                    this.OnMaGPLXChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_HinhAnh", DbType = "NVarChar(MAX)")]
+        public string HinhAnh
+        {
+            get
+            {
+                return this._HinhAnh;
+            }
+            set
+            {
+                if ((this._HinhAnh != value))
+                {
+                    this.OnHinhAnhChanging(value);
+                    this.SendPropertyChanging();
+                    this._HinhAnh = value;
+                    this.SendPropertyChanged("HinhAnh");
+                    this.OnHinhAnhChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoCCCD", DbType = "Char(12)")]
+        public string SoCCCD
+        {
+            get
+            {
+                return this._SoCCCD;
+            }
+            set
+            {
+                if ((this._SoCCCD != value))
+                {
+                    if (this._LyLich.HasLoadedOrAssignedValue)
+                    {
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                    }
+                    this.OnSoCCCDChanging(value);
+                    this.SendPropertyChanging();
+                    this._SoCCCD = value;
+                    this.SendPropertyChanged("SoCCCD");
+                    this.OnSoCCCDChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaHang", DbType = "Char(3)")]
+        public string MaHang
+        {
+            get
+            {
+                return this._MaHang;
+            }
+            set
+            {
+                if ((this._MaHang != value))
+                {
+                    if (this._HangGPLX.HasLoadedOrAssignedValue)
+                    {
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                    }
+                    this.OnMaHangChanging(value);
+                    this.SendPropertyChanging();
+                    this._MaHang = value;
+                    this.SendPropertyChanged("MaHang");
+                    this.OnMaHangChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgayCapGPLX", DbType = "Date")]
+        public System.Nullable<System.DateTime> NgayCapGPLX
+        {
+            get
+            {
+                return this._NgayCapGPLX;
+            }
+            set
+            {
+                if ((this._NgayCapGPLX != value))
+                {
+                    this.OnNgayCapGPLXChanging(value);
+                    this.SendPropertyChanging();
+                    this._NgayCapGPLX = value;
+                    this.SendPropertyChanged("NgayCapGPLX");
+                    this.OnNgayCapGPLXChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgayHetHanGPLX", DbType = "Date")]
+        public System.Nullable<System.DateTime> NgayHetHanGPLX
+        {
+            get
+            {
+                return this._NgayHetHanGPLX;
+            }
+            set
+            {
+                if ((this._NgayHetHanGPLX != value))
+                {
+                    this.OnNgayHetHanGPLXChanging(value);
+                    this.SendPropertyChanging();
+                    this._NgayHetHanGPLX = value;
+                    this.SendPropertyChanged("NgayHetHanGPLX");
+                    this.OnNgayHetHanGPLXChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaTT", DbType = "Char(10)")]
+        public string MaTT
+        {
+            get
+            {
+                return this._MaTT;
+            }
+            set
+            {
+                if ((this._MaTT != value))
+                {
+                    if (this._TrungTamSatHach.HasLoadedOrAssignedValue)
+                    {
+                        throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+                    }
+                    this.OnMaTTChanging(value);
+                    this.SendPropertyChanging();
+                    this._MaTT = value;
+                    this.SendPropertyChanged("MaTT");
+                    this.OnMaTTChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DiemLT", DbType = "Int")]
+        public System.Nullable<int> DiemLT
+        {
+            get
+            {
+                return this._DiemLT;
+            }
+            set
+            {
+                if ((this._DiemLT != value))
+                {
+                    this.OnDiemLTChanging(value);
+                    this.SendPropertyChanging();
+                    this._DiemLT = value;
+                    this.SendPropertyChanged("DiemLT");
+                    this.OnDiemLTChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DiemTH", DbType = "Int")]
+        public System.Nullable<int> DiemTH
+        {
+            get
+            {
+                return this._DiemTH;
+            }
+            set
+            {
+                if ((this._DiemTH != value))
+                {
+                    this.OnDiemTHChanging(value);
+                    this.SendPropertyChanging();
+                    this._DiemTH = value;
+                    this.SendPropertyChanged("DiemTH");
+                    this.OnDiemTHChanged();
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "TrungTamSatHach_HoSoGPLX", Storage = "_TrungTamSatHach", ThisKey = "MaTT", OtherKey = "MaTT", IsForeignKey = true)]
+        public TrungTamSatHach TrungTamSatHach
+        {
+            get
+            {
+                return this._TrungTamSatHach.Entity;
+            }
+            set
+            {
+                TrungTamSatHach previousValue = this._TrungTamSatHach.Entity;
+                if (((previousValue != value)
+                            || (this._TrungTamSatHach.HasLoadedOrAssignedValue == false)))
+                {
+                    this.SendPropertyChanging();
+                    if ((previousValue != null))
+                    {
+                        this._TrungTamSatHach.Entity = null;
+                        previousValue.HoSoGPLXes.Remove(this);
+                    }
+                    this._TrungTamSatHach.Entity = value;
+                    if ((value != null))
+                    {
+                        value.HoSoGPLXes.Add(this);
+                        this._MaTT = value.MaTT;
+                    }
+                    else
+                    {
+                        this._MaTT = default(string);
+                    }
+                    this.SendPropertyChanged("TrungTamSatHach");
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "HangGPLX_HoSoGPLX", Storage = "_HangGPLX", ThisKey = "MaHang", OtherKey = "MaHang", IsForeignKey = true)]
+        public HangGPLX HangGPLX
+        {
+            get
+            {
+                return this._HangGPLX.Entity;
+            }
+            set
+            {
+                HangGPLX previousValue = this._HangGPLX.Entity;
+                if (((previousValue != value)
+                            || (this._HangGPLX.HasLoadedOrAssignedValue == false)))
+                {
+                    this.SendPropertyChanging();
+                    if ((previousValue != null))
+                    {
+                        this._HangGPLX.Entity = null;
+                        previousValue.HoSoGPLXes.Remove(this);
+                    }
+                    this._HangGPLX.Entity = value;
+                    if ((value != null))
+                    {
+                        value.HoSoGPLXes.Add(this);
+                        this._MaHang = value.MaHang;
+                    }
+                    else
+                    {
+                        this._MaHang = default(string);
+                    }
+                    this.SendPropertyChanged("HangGPLX");
+                }
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.AssociationAttribute(Name = "LyLich_HoSoGPLX", Storage = "_LyLich", ThisKey = "SoCCCD", OtherKey = "SoCCCD", IsForeignKey = true)]
+        public LyLich LyLich
+        {
+            get
+            {
+                return this._LyLich.Entity;
+            }
+            set
+            {
+                LyLich previousValue = this._LyLich.Entity;
+                if (((previousValue != value)
+                            || (this._LyLich.HasLoadedOrAssignedValue == false)))
+                {
+                    this.SendPropertyChanging();
+                    if ((previousValue != null))
+                    {
+                        this._LyLich.Entity = null;
+                        previousValue.HoSoGPLXes.Remove(this);
+                    }
+                    this._LyLich.Entity = value;
+                    if ((value != null))
+                    {
+                        value.HoSoGPLXes.Add(this);
+                        this._SoCCCD = value.SoCCCD;
+                    }
+                    else
+                    {
+                        this._SoCCCD = default(string);
+                    }
+                    this.SendPropertyChanged("LyLich");
+                }
+            }
+        }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SendPropertyChanging()
+        {
+            if ((this.PropertyChanging != null))
+            {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

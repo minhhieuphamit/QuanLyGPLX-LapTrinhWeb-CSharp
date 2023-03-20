@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts{
+@section autocomplete{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#SoCCCD').autocomplete({
+            $("#SoCCCD").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         url: "/HoSo/GetSoCCCD",
@@ -17,14 +17,13 @@
                         data: { Prefix: request.term },
                         success: function (data) {
                             response($.map(data, function (item) {
-                                return { label: item.Name, value: item.Name };
+                                return { label: item.SoCCCD, value: item.SoCCCD };
                             }))
-
                         }
                     })
                 },
                 messages: {
-                    noResults: "", results: ""
+                    noResults: "", function(resultsCount) { }
                 }
             });
         })

@@ -5,6 +5,113 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section edit
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+        });
+        $('#fileUpload').change(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $('#fileUpload').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/HoSo/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#HinhAnh').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert('Error ', err.statusText);
+                        }
+                    });
+            }
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#NgayCapGPLX").datepicker({
+                changeMonth: true,
+                changeYear: true,
+            });
+        });
+
+        $(function () {
+            $("#NgayHetHanGPLX").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+
+        $(function () {
+            $('#NgayCapGPLX').change(function () {
+                var ngayCap = $('#NgayCapGPLX').val();
+                var ngayHetHan = $('#NgayHetHanGPLX').val();
+                var hangGPLX = $('#MaHang').val();
+                var ngayHetHanMoi = new Date(ngayCap);
+                var dd, mm, yyyy;
+                switch (hangGPLX) {
+                    case 'A1':
+                    case 'A2':
+                    case 'A3':
+                        ngayHetHanMoi = '12/31/9999';
+                        $('#NgayHetHanGPLX').val(ngayHetHanMoi);
+                        break;
+                    case 'A4':
+                    case 'B11':
+                    case 'B12':
+                    case 'B2':
+                        ngayHetHanMoi.setFullYear(ngayHetHanMoi.getFullYear() + 10);
+                        dd = ngayHetHanMoi.getDate();
+                        mm = ngayHetHanMoi.getMonth() + 1;
+                        yyyy = ngayHetHanMoi.getFullYear();
+                        if (dd < 10) {
+                            dd = '0' + dd;
+                        }
+                        if (mm < 10) {
+                            mm = '0' + mm;
+                        }
+                        ngayHetHanMoi = mm + '/' + dd + '/' + yyyy;
+                        $('#NgayHetHanGPLX').val(ngayHetHanMoi);
+                        break;
+                    case 'C':
+                    case 'D':
+                    case 'E':
+                    case 'FB2':
+                    case 'FC':
+                    case 'FD':
+                    case 'FE':
+                        ngayHetHanMoi.setFullYear(ngayHetHanMoi.getFullYear() + 5);
+                        dd = ngayHetHanMoi.getDate();
+                        mm = ngayHetHanMoi.getMonth() + 1;
+                        yyyy = ngayHetHanMoi.getFullYear();
+                        if (dd < 10) {
+                            dd = '0' + dd;
+                        }
+                        if (mm < 10) {
+                            mm = '0' + mm;
+                        }
+                        ngayHetHanMoi = mm + '/' + dd + '/' + yyyy;
+                        $('#NgayHetHanGPLX').val(ngayHetHanMoi);
+                        break;
+                }
+            });
+        });
+    </script>
+}
+
 <h2>Edit</h2>
 
 <div>
@@ -19,54 +126,56 @@
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card mb-4 mb-xl-0">
-                        <div class="card-header">Profile Picture</div>
+                        <div class="card-header">Hình ảnh hồ sơ</div>
                         <div class="card-body text-center">
-                            <img class="mb-2" src="@ViewBag.HinhAnh" alt="Hình" style="width: 45%;">
+                            <img class="mb-2" src="@Model.HinhAnh" id="pictureUpload" alt="Hình" style="width: 45%;">
                             <div class="small font-italic text-muted mb-4">Dung lượng ảnh không quá 5 MB</div>
-                            <button class="btn btn-primary" type="button">Tải ảnh lên</button>
+                            <input type="text" id="HinhAnh" name="HinhAnh" value="@Model.HinhAnh" hidden />
+                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" hidden />
+                            <input type="button" id="btnUpload" value="Tải ảnh lên" class="btn btn-primary" />
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-8">
                     <div class="card mb-4">
-                        <div class="card-header">Account Details</div>
+                        <div class="card-header">Thông tin</div>
                         <div class="card-body">
                             <form>
                                 <div class="row">
                                     <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.MaHang)</label>
+                                        <label class="small mb-1">Mã hạng</label>
                                         @Html.DropDownList("MaHang", ViewBag.HangGPLX as SelectList, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MaHang, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.NgayCapGPLX)</label>
-                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                        @Html.ValidationMessageFor(model => model.NgayCapGPLX, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.NgayHetHanGPLX)</label>
-                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                        @Html.ValidationMessageFor(model => model.NgayHetHanGPLX, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.MaTT)</label>
+                                        <label class="small mb-1">Trung tâm sát hạch</label>
                                         @Html.DropDownList("TenTT", ViewBag.TenTTSH as SelectList, "--Select--", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MaTT, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-6 gx-3 mb-3">
+                                        <label class="small mb-1">Ngày cấp</label>
+                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.NgayCap } })
+                                        @Html.ValidationMessageFor(model => model.NgayCapGPLX, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 gx-3 mb-3">
+                                        <label class="small mb-1">Ngày hết hạn</label>
+                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.NgayHetHan } })
+                                        @Html.ValidationMessageFor(model => model.NgayHetHanGPLX, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
                                 <div class="row mb-2">
                                     <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.DiemLT)</label>
+                                        <label class="small mb-1">Điểm lý thuyết</label>
                                         @Html.EditorFor(model => model.DiemLT, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.DiemLT, "", new { @class = "text-danger" })
                                     </div>
 
                                     <div class="col-md-6 gx-3 mb-3">
-                                        <label class="small mb-1">@Html.DisplayNameFor(model => model.DiemTH)</label>
+                                        <label class="small mb-1">Điểm thực hành</label>
                                         @Html.EditorFor(model => model.DiemTH, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.DiemTH, "", new { @class = "text-danger" })
                                     </div>
