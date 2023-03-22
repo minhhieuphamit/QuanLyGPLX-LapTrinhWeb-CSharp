@@ -30,25 +30,21 @@
     Response.Redirect("/Home/Login");
 }
 
-<h2>Danh Sách Hồ Sơ</h2>
-
 @using (Html.BeginForm("DanhSachHoSo", "HoSo", FormMethod.Get, new { @class = "form-inline" }))
 {
     <div class="row">
-        <div class="col">
-            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm theo số giấy phép lái xe...">
+        <h2 style="text-align:center; margin-bottom: 10px">Danh Sách Hồ Sơ</h2>
+        <div class="col" style="padding: 0px">
+            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm theo số giấy phép lái xe..." style="margin: 10px 0px; float:right;cursor:pointer">
         </div>
     </div>
 }
 
 <div class="row">
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table table-striped">
+    <br/>
+    <table class="table table-striped" style="cursor:pointer">
         <thead>
-            <tr style="white-space:nowrap; text-align:center">
+            <tr style="white-space: nowrap">
                 <th>
                     Mã GPLX
                 </th>
@@ -79,7 +75,7 @@
 
         @foreach (var item in Model)
         {
-            <tr class="search">
+            <tr class="search" >
                 <td>
                     @Html.DisplayFor(modelItem => item.MaGPLX)
                 </td>
@@ -105,6 +101,7 @@
                     @Html.DisplayFor(modelItem => item.HangGPLX)
                 </td>
                 <td class="table-func">
+                    @Html.ActionLink("Create", "Create") |
                     @Html.ActionLink("Edit", "Edit", new { id = item.MaGPLX.Trim() }) |
                     @Html.ActionLink("Details", "Details", new { id = item.MaGPLX.Trim() }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.MaGPLX.Trim() })
