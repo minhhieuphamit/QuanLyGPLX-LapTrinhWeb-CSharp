@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 {
@@ -194,6 +195,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
         {
+            var C_HinhAnh = collection["HinhAnh"];
             var C_SoCCCD = collection["SoCCCD"];
             var C_MaGPLX = collection["MaGPLX"];
             var C_MaHang = collection["MaHang"];
@@ -211,6 +213,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             {
                 var C_MaTT = data.TrungTamSatHaches.First(m => m.TenTT == C_TenTT).MaTT;
                 HoSoGPLX hs = new HoSoGPLX();
+                hs.HinhAnh = C_HinhAnh;
                 hs.SoCCCD = C_SoCCCD;
                 hs.MaGPLX = C_MaGPLX;
                 hs.MaHang = C_MaHang;
