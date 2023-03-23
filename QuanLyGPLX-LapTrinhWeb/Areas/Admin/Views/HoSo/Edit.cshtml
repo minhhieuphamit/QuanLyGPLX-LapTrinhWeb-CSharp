@@ -114,10 +114,9 @@
     </script>
 }
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa hồ sơ</h2>
 
 <div>
-    <h4>Hồ sơ GPLX</h4>
     <hr />
     @using (Html.BeginForm())
     {
@@ -198,5 +197,5 @@
     }
 </div>
 <div>
-    @Html.ActionLink("Back to List", "DanhSachHoSo")
+    <a class="btn btn-outline-dark" href="@Url.Action("DanhSachHoSo", "HoSo")"><i class="fa-solid fa-arrow-left"></i> Back</a>
 </div>

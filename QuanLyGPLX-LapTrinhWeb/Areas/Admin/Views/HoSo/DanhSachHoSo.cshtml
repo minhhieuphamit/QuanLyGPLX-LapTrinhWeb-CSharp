@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section search{
+@section danhsach{
     <script>
         $(document).ready(function () {
             function Contains(text_one, text_two) {
@@ -23,6 +23,28 @@
             })
         });
     </script>
+
+    <script>
+        var ConfirmDelete = function (MaGPLX) {
+            $("hiddenHoSo").val('MaGPLX');
+            $("#myModal").modal("show");
+        }
+
+        var DeleteHoSo = function () {
+            var MaGPLX = $("#hiddenHoSo").val();
+            $.ajax({
+                url: "/HoSo/DeleteHoSo",
+                type: "POST",
+                data: { Id: MaGPLX },
+                success: function (data) {
+                    if (data == "success") {
+                        $("#myModal").modal("hide");
+                        $("#row_" + MaGPLX).remove();
+                    }
+                }
+            })
+        }
+    </script>
 }
 
 @if (Session["username"] == null)
@@ -35,16 +57,18 @@
     <div class="row">
         <h2 style="text-align:center; margin-bottom: 10px">Danh Sách Hồ Sơ</h2>
         <div class="col" style="padding: 0px">
-            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm theo số giấy phép lái xe..." style="margin: 10px 0px; float:right;cursor:pointer">
+            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm" style="margin: 10px 0px; cursor:auto">
         </div>
     </div>
 }
 
 <div class="row">
-    <br/>
-    <table class="table table-striped" style="cursor:pointer">
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-striped">
         <thead>
-            <tr style="white-space: nowrap">
+            <tr style="white-space:nowrap; text-align:center">
                 <th>
                     Mã GPLX
                 </th>
@@ -69,46 +93,67 @@
                 <th>
                     Hạng GPLX
                 </th>
-                <th></th>
+                <th>
+                    Action
+                </th>
             </tr>
         </thead>
 
         @foreach (var item in Model)
         {
-            <tr class="search" >
-                <td>
+            <tr class="search" style="font-size:14px">
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.MaGPLX)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.HoTen)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.NgaySinh)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.GioiTinh)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.NgayCap)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.NgayHetHan)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.HangGPLX)
                 </td>
-                <td class="table-func">
-                    @Html.ActionLink("Create", "Create") |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MaGPLX.Trim() }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MaGPLX.Trim() }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MaGPLX.Trim() })
+                <td class="text-nowrap">
+                    <a class="btn btn-outline-dark" href="@Url.Action("Details", "HoSo", new { id = item.MaGPLX.Trim() })"><i class="fa-sharp fa-solid fa-info"></i></a>
+                    <a class="btn btn-outline-primary" href="@Url.Action("Edit", "HoSo", new { id = item.MaGPLX.Trim() })"><i class="fa-sharp fa-solid fa-edit"></i></a>
+                    <a href="#" class="btn btn-outline-danger" onclick="ConfirmDelete('@item.MaGPLX.Trim()')"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }
     </table>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>Bạn chắc chắn muốn xóa hồ sơ này? </h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteHoSo()">Confirm</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hiddenHoSo" />
 
     <div>
         <div>
