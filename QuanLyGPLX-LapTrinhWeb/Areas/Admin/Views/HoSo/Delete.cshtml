@@ -7,66 +7,37 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>HoSoGPLX</h4>
+    <h4>Hồ sơ giấy phép lái xe</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SoCCCD)
+            Số căn cước công dân: @Html.DisplayFor(model => model.SoCCCD, new { @style = "font-weight: normal;" })
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoCCCD)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaHang)
+            Mã hạng : @Html.DisplayFor(model => model.MaHang)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaHang)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayCapGPLX)
+            Ngày cấp giấy phép lái xe: @Html.DisplayFor(model => model.NgayCapGPLX)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayCapGPLX)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayHetHanGPLX)
+            Ngày hết hạn giấy phép lái xe: @Html.DisplayFor(model => model.NgayHetHanGPLX)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayHetHanGPLX)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaTT)
+            Trung tâm sát hạch: @Html.DisplayFor(model => model.MaTT)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaTT)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiemLT)
+            Điểm lý thuyết: @Html.DisplayFor(model => model.DiemLT)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiemLT)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiemTH)
+            Điểm thực hành: @Html.DisplayFor(model => model.DiemTH)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiemTH)
-        </dd>
 
     </dl>
 
@@ -75,7 +46,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-primary"/> |
             @Html.ActionLink("Back to List", "DanhSachHoSo")
         </div>
     }
