@@ -167,6 +167,18 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             return RedirectToAction("DanhSachHoSo");
         }
 
+        [HttpPost]
+        public ActionResult DeleteHoSo(string id)
+        {
+            using (var context = new MyDataDataContext())
+            {
+                var MaGPLX = context.HoSoGPLXes.Where(a => a.MaGPLX == id).FirstOrDefault();
+                context.HoSoGPLXes.DeleteOnSubmit(MaGPLX);
+                context.SubmitChanges();
+            }
+            return Json(new { status = "Success" });
+        }
+
         /*---------Thêm mới hồ sơ---------*/
         [HttpPost]
         public JsonResult GetSoCCCD(string Prefix)
