@@ -6,61 +6,7 @@
 }
 
 @section create{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#SoCCCD").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "/HoSo/GetSoCCCD",
-                        type: "POST",
-                        dataType: "json",
-                        data: { Prefix: request.term },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return { label: item.SoCCCD, value: item.SoCCCD };
-                            }))
-                        }
-                    })
-                },
-                messages: {
-                    noResults: "", function(resultsCount) { }
-                }
-            });
-        })
-    </script>
-
-    <script>
-        $(function () {
-            $('#btnUpload').click(function () {
-                $('#fileUpload').trigger('click');
-            });
-        });
-        $('#fileUpload').change(function () {
-            if (window.FormData !== undefined) {
-                var fileUpload = $('#fileUpload').get(0);
-                var files = fileUpload.files;
-                var formData = new FormData();
-                formData.append('file', files[0]);
-
-                $.ajax(
-                    {
-                        type: 'POST',
-                        url: '/HoSo/ProcessUpload',
-                        contentType: false,
-                        processData: false,
-                        data: formData,
-                        success: function (urlImage) {
-
-                            $('#pictureUpload').attr('src', urlImage);
-                            $('#HinhAnh').val(urlImage);
-                        },
-                        error: function (err) {
-                            alert('Error ', err.statusText);
-                        }
-                    });
-            }
-        });
-    </script>
+    <script src="~/Scripts/Scripts.js"></script>
 }
 
 <h2>Thêm mới hồ sơ giấy phép lái xe</h2>
@@ -128,7 +74,7 @@
                                 <div class="col-md-6 gx-3 mb-3">
                                     <label for="SoCCCD" class="form-label small mb-1">Ngày cấp</label>
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                        @Html.EditorFor(model => model.NgayCapGPLX, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.NgayCapGPLX, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -136,7 +82,7 @@
                                 <div class="col-md-6 gx-3 mb-3">
                                     <label for="SoCCCD" class="form-label small mb-1">Ngày hết hạn</label>
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                        @Html.EditorFor(model => model.NgayHetHanGPLX, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.NgayHetHanGPLX, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -176,5 +122,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "DanhSachHoSo")
+    <a class="btn btn-outline-dark" href="@Url.Action("DanhSachHoSo", "HoSo")"><i class="fa-solid fa-arrow-left"></i> Back</a>
 </div>
