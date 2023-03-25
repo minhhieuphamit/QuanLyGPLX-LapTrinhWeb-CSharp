@@ -41,6 +41,37 @@
         }
     </script>
 }
+<style>
+    .search-container {
+        position: relative;
+        width: 400px;
+        height: 40px;
+        margin: 20px auto;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+        .search-container input[type="text"] {
+            float: right
+        }
+
+        .search-container button[type="submit"] {
+            position: absolute;
+            right: 0;
+            top: 7px;
+            width: 40px;
+            height: 43px;
+            border: none;
+            background-color: #0d6efd;
+            cursor: pointer;
+            border-radius: 9px;
+        }
+
+            .search-container button[type="submit"] i {
+                color: white;
+                font-size: 18px;
+            }
+</style>
 
 @if (Session["username"] == null)
 {
@@ -51,16 +82,16 @@
 {
     <div class="row">
         <h2 style="text-align:center; margin-bottom: 10px">Danh Sách Hồ Sơ</h2>
-        <div class="col" style="padding: 0px">
-            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm" style="margin: 10px 0px; cursor:auto">
+        <div class="col search-container">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+            <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </div>
 }
 
 <div class="row">
-    <p>
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-    </p>
+
     <table class="table table-striped">
         <thead>
             <tr style="white-space:nowrap; text-align:center">
