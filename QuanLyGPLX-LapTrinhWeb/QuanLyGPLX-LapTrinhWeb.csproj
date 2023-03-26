@@ -175,6 +175,10 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\images\A29.png" />
+    <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\banner-login.png" />
+    <Content Include="Content\images\license_background.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
     <Content Include="Content\Login\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\Login\css\bootstrap\bootstrap-reboot.css" />

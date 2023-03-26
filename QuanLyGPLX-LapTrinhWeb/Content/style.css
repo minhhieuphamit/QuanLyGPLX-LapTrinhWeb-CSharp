@@ -12176,3 +12176,344 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         margin-left: -15rem;
     }
 }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ti {
+    color: #fff;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.col-left {
+    width: 200px;
+    padding: 10px;
+}
+
+.col-right {
+    width: 450px;
+    margin: 0 20px;
+}
+
+.container-lg,
+.container-fluid {
+    width: 1400px;
+    margin: auto;
+}
+
+    .container-lg thead th,
+    .container-fluid thead th {
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    .container-lg tbody td,
+    .container-fluid tbody td {
+        vertical-align: baseline;
+        padding: 10px;
+    }
+
+        .container-lg tbody td button,
+        .container-fluid tbody td button {
+            display: block;
+            margin: 4px;
+        }
+
+.modal {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+    .modal.open {
+        display: flex !important;
+    }
+
+    .modal .ti {
+        color: rgb(158, 158, 158);
+        font-size: 20px;
+    }
+
+    .modal .form-control {
+        padding: 4px;
+        border: none;
+        outline: none;
+        width: 550px;
+    }
+
+    .modal .login {
+        margin: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .modal .modal-container {
+        background-color: #fff;
+        width: 600px;
+        max-width: calc(100% - 100px);
+        min-height: 200px;
+        position: relative;
+        animation: modalFadeIn ease 0.4;
+        border-radius: 5px;
+    }
+
+    .modal .modal-close {
+        float: right;
+        padding: 6px 10px;
+        color: #fff;
+    }
+
+        .modal .modal-login-button button:hover,
+        .modal .modal-close:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+
+    .modal .modal-header {
+        padding: 20px;
+        background-color: #202878;
+        background: url(/assets/img/background.jpg);
+    }
+
+    .modal .modal-title {
+        color: #1f8bc9;
+        font-size: 30px;
+        padding: 10px 10px 0;
+    }
+
+    .modal .modal-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal .modal-login-button button {
+        padding: 8px;
+        margin: 20px;
+        border-radius: 16px;
+        background-color: #1f8bc9;
+        color: #fff;
+        border: none;
+    }
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-1 {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+    .modal-1.open {
+        display: flex !important;
+    }
+
+    .modal-1 .modal-1-close i {
+        float: right;
+        padding: 20px 10px;
+        color: #ccc;
+    }
+
+        .modal-1 .modal-1-close i:hover {
+            color: #000;
+            opacity: 0.8;
+        }
+
+    .modal-1 .modal-1-container {
+        background-color: #fff;
+        width: 900px;
+        max-width: calc(100% - 100px);
+        min-height: 200px;
+        position: relative;
+        animation: modalFadeIn ease 0.4;
+    }
+
+    .modal-1 .modal-1-header {
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .modal-1 .modal-1-body .search-control {
+        margin-bottom: 10px;
+    }
+
+    .modal-1 .modal-1-body label {
+        padding-right: 10px;
+        font-weight: bold;
+    }
+
+    .modal-1 .modal-1-table {
+        padding: 10px;
+        width: 100%;
+    }
+
+        .modal-1 .modal-1-table thead th {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .modal-1 .modal-1-table tbody {
+            background-color: #ccc;
+            opacity: 0.4;
+        }
+
+            .modal-1 .modal-1-table tbody:hover {
+                opacity: 0.7;
+            }
+
+            .modal-1 .modal-1-table tbody td {
+                color: #000;
+                text-align: center;
+                padding: 8px;
+            }
+
+    .modal-1 .modal-1-footer {
+        margin: 10px 0;
+        padding: 0 10px;
+        width: 100%;
+        position: relative;
+        min-height: 30.91px;
+    }
+
+        .modal-1 .modal-1-footer button {
+            padding: 6px 12px;
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            float: right;
+        }
+
+            .modal-1 .modal-1-footer button:hover {
+                opacity: 0.8;
+            }
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
+.pl-10.pr-10 {
+    width: 444px;
+    display: inline-block;
+}
+
+    .pl-10.pr-10.special {
+        width: 888px !important;
+        display: inline-block;
+    }
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    .content .search-driving-license {
+        background: url(images/license_background.png);
+    }
+
+    .content .news li {
+        list-style: none;
+        margin: 4px 0;
+    }
+
+    .content .news a {
+        text-decoration: none;
+        color: #000;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .content .search-heading {
+        padding: 16px 10px;
+    }
+
+    .content .search-row {
+        margin-bottom: 16px;
+    }
+
+.content .btn-send-contact {
+    margin: 8px;
+    padding: 4px;
+    background: #fab000;
+    color: #fff;
+    border: none;
+    width: 160px;
+}
+
+        .content .btn-send-contact:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+
+    .content .label {
+        display: inline-block;
+    }
+
+    .content .form-control {
+        padding: 4px;
+    }
+
+    .content .news .title {
+        background-color: #1f8bc9;
+    }
+
+    .content .news-heading {
+        background-color: #202878;
+        display: inline-block;
+        color: #fff;
+        padding: 6px 10px;
+        clip-path: polygon(0% 0%, 88% 0, 100% 50%, 88% 100%, 0% 100%);
+    }
+
+
+
+
+
+

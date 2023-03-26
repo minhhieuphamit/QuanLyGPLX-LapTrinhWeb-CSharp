@@ -3,5 +3,256 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thông Tin Giấy Phép Lái Xe</title>
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="module-4" class="content">
+            <div class="container">
+                <div id="module-5" class="search-driving-license">
+                    <h2 class="search-heading">Tra Cứu Thông Tin Giấy phép lái xe</h2>
+                    <form class="search-form" name="form1" action="" method="post">
+                        <div class="search-row">
+                            <label class="label col-left">Số GPLX:</label>
+                            <input class="form-control col-right" type="text" id="maGPLX" name="maGPLX" placeholder="Nhập số giấy phép lái xe" style="display:inline-block">
+                        </div>
+                        <div class="search-row">
+                            <label class="label col-left">Hạng GPLX:</label>
+                            <select class="form-control col-right" id="Hang" name="Hang" style="display:inline-block">
+                                <option value="--Selected--"></option>
+                                <option>A1</option>
+                                <option>A2</option>
+                                <option>A3</option>
+                                <option>A4</option>
+                                <option>B11</option>
+                                <option>B12</option>
+                                <option>B2</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>FB2</option>
+                                <option>FC</option>
+                                <option>FD</option>
+                                <option>FE</option>
+                            </select>
+                        </div>
+                        <div class="search-row">
+                            <label class="label col-left">Ngày/Tháng/Năm sinh:</label>
+                            <input class="form-control col-right" type="date" id="Ngay" name="Ngay" placeholder="Nhập ngày tháng năm sinh" style="display:inline-block">
+                        </div>
+                        <button type="button" class="btn-send-contact js-search" id="btn_TraCuu" value="Tra cứu" name="submit">Tra cứu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @*<div id="module-8" class="content">
+            <div class="container">
+                <div id="module-9" class="news">
+                    <div class="title">
+                        <h3 class="news-heading">Tin Tức </h3>
+                    </div>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/toan-bo-10-du-an-duong-bo-cap-bach-sap-can-dich.html">TOÀN BỘ 10 DỰ ÁN ĐƯỜNG BỘ CẤP BÁCH SẮP CÁN ĐÍCH</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/bo-sung-mot-so-tuyen-quoc-lo-vao-quy-hoach.html">BỔ SUNG MỘT SỐ TUYẾN QUỐC LỘ VÀO QUY HOẠCH</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/van-tai-lech-ve-duong-bo-doi-chi-phi-logistics.html">VẬN TẢI LỆCH VỀ ĐƯỜNG BỘ, ĐỘI CHI PHÍ LOGISTICS</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/dieu-hanh-tuyen-truyen-luat-giao-thong-duong-bo.html">DIỄU HÀNH TUYÊN TRUYỀN LUẬT GIAO THÔNG ĐƯỜNG BỘ</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/le-cong-bo-thoa-thuan-hop-tac-giua-tong-cuc-duong-bo-viet-nam-va-truong-dai-hoc-bach-khoa-ha-noi.html">LỄ CÔNG BỐ THỎA THUẬN HỢP TÁC GIỮA TỔNG CỤC ĐƯỜNG BỘ VIỆT NAM VÀ TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI</a></li><hr>
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+    <div class="modal-1 js-modal-1">
+        <div class="modal-1-container js-modal-1-container">
+
+            <div class="modal-1-close js-modal-1-close ">
+                <i class="ti ti-close"></i>
+            </div>
+
+            <div class="modal-1-header">
+                <center><h2 class="modal-1-title">Thông tin tra cứu</h2></center>
+            </div>
+
+            <div class="modal-1-body">
+                <div class="modal-1-info">
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Họ và Tên : </label>
+                            <span id="Hoten" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Giới tính :</label>
+                            <span id="GioiTinh" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Ngày sinh :</label>
+                            <span id="NgaySinh" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Số giấy phép lái xe :</label>
+                            <span id="MaGPLX" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Ngày cấp giấy phép lái xe :</label>
+                            <span id="NgayCap" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Ngày hết hạn giấy phép lái xe :</label>
+                            <span id="NgayHetHan" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Hạng giấy phép lái xe :</label>
+                            <span id="Ma_Hang" class="text-content">:</span>
+                        </div>
+                    </div>
+                    <div class="pl-10 pr-10">
+                        <div class="search-control">
+                            <label>Ngày trúng tuyển :</label>
+                            <span id="NgayTrungTuyen" class="text-content">:</span>
+                        </div>
+                    </div>
+
+                    <div class="pl-10 pr-10 special">
+                        <div class="search-control">
+                            <label>Trung tâm sát hạch :</label>
+                            <span id="NoiCap" class="text-content">:</span>
+                        </div>
+                    </div>
+                </div>
+                <table class="modal-1-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã vi phạm</th>
+                            <th scope="col">Ngày vi phạm</th>
+                            <th scope="col">Nội dung vi phạm</th>
+                        </tr>
+                    </thead>
+                    <tbody id=getViPham>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-1-footer">
+                <button type="button" class="modal-1-button js-modal-1-close">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./JavaScript/Search.js"></script>
+    <script>
+        const search = document.querySelector('.js-search')
+        const modal_1 = document.querySelector('.js-modal-1')
+        const modal_1_Closes = document.querySelectorAll('.js-modal-1-close')
+        const modal_1_Container = document.querySelector('.js-modal-1-container')
+
+        function required() {
+            var ma = document.forms["form1"]["maGPLX"].value;
+            var ngay = document.forms["form1"]["Ngay"].value;
+            var hang = document.forms["form1"]["Hang"].value;
+            if (ma == "" || ngay == "" || hang == "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        var input = document.getElementById('btn_TraCuu');
+        input.onclick = function () {
+            if (required() == true) {
+                GetNoiDung();
+                GetViPham();
+                openFormSearch();
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin !!!");
+            }
+        };
+
+        function GetNoiDung() {
+            var ma = document.forms["form1"]["maGPLX"].value;
+            var ngay = document.forms["form1"]["Ngay"].value;
+            var hang = document.forms["form1"]["Hang"].value;
+            $.ajax({
+                url: 'TraCuu.php',
+                method: 'POST',
+                data: {
+                    ma: ma,
+                    hang: hang,
+                    ngay: ngay,
+                }, dataType: "json",
+                success: function (data) {
+                    var starSpan = '<span class="text-content">';
+                    var endSpan = '</span>';
+                    $('#Hoten').html(starSpan + data.Hoten + endSpan);
+                    $('#GioiTinh').html(starSpan + data.GioiTinh + endSpan);
+                    $('#NgaySinh').html(starSpan + data.NgaySinh + endSpan);
+                    $('#Ma_Hang').html(starSpan + data.MaHang + endSpan);
+                    $('#MaGPLX').html(starSpan + data.MaGP + endSpan);
+                    $('#NgayCap').html(starSpan + data.NgayCap + endSpan);
+                    $('#NgayHetHan').html(starSpan + data.NgayHetHan + endSpan);
+                    $('#NgayTrungTuyen').html(starSpan + data.NgayCap + endSpan);
+                    $('#NoiCap').html(starSpan + data.ttsh + endSpan);
+                }
+            })
+        }
+
+
+
+        function GetViPham() {
+            var x = document.getElementById("maGPLX").value;
+            $.ajax({
+                url: 'GetViPham.php',
+                method: 'POST',
+                data: {
+                    ma: x,
+                }, success: function (data) {
+                    $('#getViPham').html(data);
+                }
+            })
+        }
+
+        function openFormSearch() {
+            modal_1.classList.add('open')
+        }
+
+        function closeFormSearch() {
+            modal_1.classList.remove('open')
+        }
+
+        for (const modal_1_Close of modal_1_Closes) {
+            modal_1_Close.addEventListener('click', closeFormSearch)
+        }
+
+        search.addEventListener('click', required)
+
+        modal_1.addEventListener('click', closeFormSearch)
+
+        modal_1_Container.addEventListener('click', function (event) {
+            event.stopPropagation()
+        })
+
+    </script>
+</body>
+</html>
+
 
