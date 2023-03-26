@@ -35,7 +35,7 @@
 
         <div class="footer-left">
 
-            <h3>Hệ thống <span>GPLX </span><i class="fa-solid fa-traffic-light"></i></h3>
+            <h3>Hệ thống quản lý <span>GPLX </span><i class="fa-solid fa-traffic-light"></i></h3>
 
             <p class="footer-links">
                 <a href="#" class="link-1">Trang chủ</a>
@@ -46,7 +46,7 @@
 
                 <a href="#">About</a>
 
-                <a href="#">Faq</a>
+                <a href="#">FAQ</a>
 
                 <a href="#">Contact</a>
             </p>
@@ -55,22 +55,33 @@
         </div>
 
         <div class="footer-center">
-
             <div>
                 <i class="fa fa-map-marker"></i>
-                <p><span>TP.Thủ Đức, HCM</span></p>
+                <p>
+                    <span>
+                        <a href="https://goo.gl/maps/Ls7Fa6RjD4qvoKhQ9">Thu Duc Campus Hutech khu E</a>
+                    </span>
+                </p>
             </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.6052124401169!2d106.78458809852604!3d10.855560627276397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2sThu%20Duc%20Campus%20Hutech%20khu%20E!5e0!3m2!1svi!2s!4v1679802192657!5m2!1svi!2s" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
             <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:minhhieupham@gmail.com">minhhieupham2002@gmail.com</a></p>
+            </div>
+            <div>
                 <i class="fa fa-phone"></i>
-                <p>+84 785924515</p>
+                <a href="tel: +84706068259" style="text-decoration:none"> 0706068259 </a>
             </div>
 
             <div>
                 <i class="fa fa-envelope"></i>
-                <p><a href="#">sneakiedward@gmail.com</a></p>
+                <p><a href="mailto:sneakiedward@gmail.com">sneakiedward@gmail.com</a></p>
             </div>
-
+            <div>
+                <i class="fa fa-phone"></i>
+                <a href="tel: +84785924515" style="text-decoration:none"> 0785924515 </a>
+            </div>
         </div>
 
         <div class="footer-right">
@@ -81,10 +92,8 @@
             </p>
 
             <div class="footer-icons">
-
                 <a href="https://www.facebook.com/ptt27092002" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
                 <a href="https://github.com/minhhieuphamit/QuanLyGPLX-LapTrinhWeb" target="_blank"><i class="fa-brands fa-square-github"></i></a>
-
             </div>
 
         </div>
@@ -94,10 +103,10 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("edit", required: false)
     @RenderSection("create", required: false)
     @RenderSection("danhsach", required: false)
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </body>
 </html>

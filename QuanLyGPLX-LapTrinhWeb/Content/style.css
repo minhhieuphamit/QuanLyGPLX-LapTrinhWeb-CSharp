@@ -206,9 +206,10 @@ label.error {
 }
 
     .form .fa-search {
+        font-size: 20px;
         position: absolute;
-        top: 12px;
-        left: 29px;
+        top: 10px;
+        left: 20px;
         color: #9ca3af;
     }
 
@@ -222,7 +223,7 @@ label.error {
 
 .form-input {
     height: 40px;
-    text-indent: 33px;
+    text-indent: 22px;
     border-radius: 10px;
 }
 
