@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GPLX" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.DanToc" Member="DanTocs">
+    <Type Name="DanToc">
+      <Column Name="MaDT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenDT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenGoiKhac" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="DanToc_LyLich" Member="LyLiches" ThisKey="MaDT" OtherKey="MaDT" Type="LyLich" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HangGPLX" Member="HangGPLXes">
+    <Type Name="HangGPLX">
+      <Column Name="MaHang" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenHang" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DoiTuongDuocCap" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ThoiHanSuDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="HangGPLX_HoSoGPLX" Member="HoSoGPLXes" ThisKey="MaHang" OtherKey="MaHang" Type="HoSoGPLX" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoSoGPLX" Member="HoSoGPLXes">
+    <Type Name="HoSoGPLX">
+      <Column Name="MaGPLX" Type="System.String" DbType="Char(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoCCCD" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="MaHang" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="NgayCapGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NgayHetHanGPLX" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaTT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="DiemLT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiemTH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HangGPLX_HoSoGPLX" Member="HangGPLX" ThisKey="MaHang" OtherKey="MaHang" Type="HangGPLX" IsForeignKey="true" />
+      <Association Name="LyLich_HoSoGPLX" Member="LyLich" ThisKey="SoCCCD" OtherKey="SoCCCD" Type="LyLich" IsForeignKey="true" />
+      <Association Name="TrungTamSatHach_HoSoGPLX" Member="TrungTamSatHach" ThisKey="MaTT" OtherKey="MaTT" Type="TrungTamSatHach" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LyLich" Member="LyLiches">
+    <Type Name="LyLich">
+      <Column Name="SoCCCD" Type="System.String" DbType="Char(12) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="HoLot" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="MaDT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaQT" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Association Name="LyLich_HoSoGPLX" Member="HoSoGPLXes" ThisKey="SoCCCD" OtherKey="SoCCCD" Type="HoSoGPLX" />
+      <Association Name="DanToc_LyLich" Member="DanToc" ThisKey="MaDT" OtherKey="MaDT" Type="DanToc" IsForeignKey="true" />
+      <Association Name="PhuongXa_LyLich" Member="PhuongXa" ThisKey="DiaChi" OtherKey="MaPX" Type="PhuongXa" IsForeignKey="true" />
+      <Association Name="QuocTich_LyLich" Member="QuocTich" ThisKey="MaQT" OtherKey="MaQT" Type="QuocTich" IsForeignKey="true" />
+      <Association Name="TonGiao_LyLich" Member="TonGiao" ThisKey="MaTG" OtherKey="MaTG" Type="TonGiao" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhuongXa" Member="PhuongXas">
+    <Type Name="PhuongXa">
+      <Column Name="MaPX" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenPX" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaHuyen" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Association Name="PhuongXa_LyLich" Member="LyLiches" ThisKey="MaPX" OtherKey="DiaChi" Type="LyLich" />
+      <Association Name="QuanHuyen_PhuongXa" Member="QuanHuyen" ThisKey="MaHuyen" OtherKey="MaHuyen" Type="QuanHuyen" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuanHuyen" Member="QuanHuyens">
+    <Type Name="QuanHuyen">
+      <Column Name="MaHuyen" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenHuyen" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaTinh" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Association Name="QuanHuyen_PhuongXa" Member="PhuongXas" ThisKey="MaHuyen" OtherKey="MaHuyen" Type="PhuongXa" />
+      <Association Name="TinhTP_QuanHuyen" Member="TinhTP" ThisKey="MaTinh" OtherKey="MaTinh" Type="TinhTP" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuocTich" Member="QuocTiches">
+    <Type Name="QuocTich">
+      <Column Name="MaQT" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenQT" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="QuocTich_LyLich" Member="LyLiches" ThisKey="MaQT" OtherKey="MaQT" Type="LyLich" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="idRole" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameRole" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Role_User" Member="Users" ThisKey="idRole" OtherKey="idRole" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TinhTP" Member="TinhTPs">
+    <Type Name="TinhTP">
+      <Column Name="MaTinh" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTinh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="TinhTP_QuanHuyen" Member="QuanHuyens" ThisKey="MaTinh" OtherKey="MaTinh" Type="QuanHuyen" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TonGiao" Member="TonGiaos">
+    <Type Name="TonGiao">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TonGiao_LyLich" Member="LyLiches" ThisKey="MaTG" OtherKey="MaTG" Type="LyLich" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrungTamSatHach" Member="TrungTamSatHaches">
+    <Type Name="TrungTamSatHach">
+      <Column Name="MaTT" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="TrungTamSatHach_HoSoGPLX" Member="HoSoGPLXes" ThisKey="MaTT" OtherKey="MaTT" Type="HoSoGPLX" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameUser" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="idRole" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Role_User" Member="Role" ThisKey="idRole" OtherKey="idRole" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

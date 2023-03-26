@@ -1,0 +1,309 @@
+﻿@model PagedList.IPagedList<QuanLyGPLX_LapTrinhWeb.Models.HoSo>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách hồ sơ giấy phép lái xe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section danhsach{
+    <script src="~/Scripts/Scripts.js"></script>
+}
+
+@if (Session["username"] == null)
+{
+    Response.Redirect("/Home/Login");
+}
+
+<style>
+    body {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .modal-confirm {
+        color: #636363;
+        width: 400px;
+    }
+
+        .modal-confirm .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .modal-confirm .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+
+        .modal-confirm h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -10px;
+        }
+
+        .modal-confirm .close {
+            position: absolute;
+            top: -5px;
+            right: -2px;
+        }
+
+        .modal-confirm .modal-body {
+            color: #999;
+        }
+
+        .modal-confirm .modal-footer {
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+            padding: 10px 15px 25px;
+        }
+
+            .modal-confirm .modal-footer a {
+                color: #999;
+            }
+
+        .modal-confirm .icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            z-index: 9;
+            text-align: center;
+            border: 3px solid #f15e5e;
+        }
+
+            .modal-confirm .icon-box i {
+                color: #f15e5e;
+                font-size: 46px;
+                display: inline-block;
+                margin-top: 13px;
+            }
+
+        .modal-confirm .btn,
+        .modal-confirm .btn:active {
+            color: #fff;
+            border-radius: 4px;
+            background: #60c7c1;
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            min-width: 120px;
+            border: none;
+            min-height: 40px;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+
+        .modal-confirm .btn-secondary {
+            background: #c1c1c1;
+        }
+
+            .modal-confirm .btn-secondary:hover,
+            .modal-confirm .btn-secondary:focus {
+                background: #a8a8a8;
+            }
+
+        .modal-confirm .btn-danger {
+            background: #f15e5e;
+        }
+
+            .modal-confirm .btn-danger:hover,
+            .modal-confirm .btn-danger:focus {
+                background: #ee3535;
+            }
+
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
+</style>
+
+@using (Html.BeginForm("DanhSachHoSo", "HoSo", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="row">
+        <h2 style="text-align:center; margin-bottom: 10px">Danh Sách Hồ Sơ</h2>
+        <div class="container">
+            <div class="row height d-flex justify-content-center align-items-center">
+                <div class="form" style="padding:0px">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" name="search" id="search" placeholder="Tìm kiếm mã GPLX" style="padding-left:30px;display:inline-block">
+                    <a href="@Url.Action("Create", "HoSo")" style="text-decoration: none" class="btn btn-outline-primary">
+                        <i class="fa-sharp fa-solid fa-file-circle-plus" style="font-size:20px"></i> Thêm hồ sơ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+<div class="row">
+
+    <table class="table table-striped">
+        <thead>
+            <tr style="white-space:nowrap; text-align:center">
+                <th>
+                    Mã GPLX
+                </th>
+                <th>
+                    Họ và tên
+                </th>
+                <th>
+                    Ngày sinh
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Ngày cấp
+                </th>
+                <th>
+                    Ngày hết hạn
+                </th>
+                <th>
+                    Hạng GPLX
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaGPLX" class="search" style="font-size:14px">
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.MaGPLX)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.NgayCap)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.NgayHetHan)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.HangGPLX)
+                </td>
+                <td class="text-nowrap">
+                    <a class="btn btn-outline-info" href="@Url.Action("Details", "HoSo", new { id = item.MaGPLX.Trim() })"><i class="fa-sharp fa-solid fa-info" style="font-size:15px"></i></a>
+                    <a class="btn btn-outline-primary" href="@Url.Action("Edit", "HoSo", new { id = item.MaGPLX.Trim() })"><i class="fa-sharp fa-solid fa-edit"></i></a>
+                    <a class="btn btn-outline-danger" onclick="DeleteHoSo('@item.MaGPLX.Trim()');"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="text-center text-danger">@ViewBag.DanhSachHoSo</div>
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header flex-column">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                    <h4 class="modal-title w-100">Are you sure?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to delete these records? This process cannot be undone.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" id="btnCancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        </div>
+        <div class="d-flex justify-content-center">
+            <ul class="pagination mt-3 mb-0">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", "HoSo", new { page = 1 })">‹‹</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">‹‹</a>
+                    </li>
+                }
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageNumber - 1 })">‹</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">‹</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    if (i == Model.PageNumber)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = i })">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = i })">@i</a>
+                        </li>
+                    }
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageNumber + 1 })">›</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">›</a>
+                    </li>
+                }
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("DanhSachHoSo", new { page = Model.PageCount })">››</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">››</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
