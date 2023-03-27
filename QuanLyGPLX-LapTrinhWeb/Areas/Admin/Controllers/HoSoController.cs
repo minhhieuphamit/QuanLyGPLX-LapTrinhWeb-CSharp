@@ -63,6 +63,10 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
                                     NgayHetHan = String.Format("{0:dd/MM/yyyy}", hs.NgayHetHanGPLX),
                                     HangGPLX = hs.MaHang
                                 });
+                if (all_HoSo.Count() == 0)
+                {
+                    ViewBag.DanhSachHoSo = "Không tìm thấy hồ sơ nào!";
+                }
                 return View(all_HoSo.ToPagedList(pageNum, pageSize));
             }
 
