@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="~/Content/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,18 +39,12 @@
 
             <p class="footer-links">
                 <a href="#" class="link-1">Trang chủ</a>
-
                 <a href="#">Blog</a>
-
                 <a href="#">Pricing</a>
-
                 <a href="#">About</a>
-
                 <a href="#">FAQ</a>
-
                 <a href="#">Contact</a>
             </p>
-
             <p class="footer-company-name">Company Name © 2015</p>
         </div>
 
@@ -93,7 +89,6 @@
                 <a href="https://www.facebook.com/ptt27092002" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
                 <a href="https://github.com/minhhieuphamit/QuanLyGPLX-LapTrinhWeb" target="_blank"><i class="fa-brands fa-square-github"></i></a>
             </div>
-
         </div>
 
     </footer>
@@ -103,5 +98,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("tracuu", required: false)
 </body>
 </html>

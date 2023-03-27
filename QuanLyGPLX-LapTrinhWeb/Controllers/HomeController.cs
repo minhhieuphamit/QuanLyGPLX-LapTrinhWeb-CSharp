@@ -45,7 +45,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult TraCuuHoSo(string MaGPLX, string HangGPLX)
         {
             using (MyDataDataContext data = new MyDataDataContext())
@@ -77,11 +76,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
                                 DiemTH = hs.DiemTH.ToString(),
                                 TTSH = ttsh.TenTT
                             }).First();
-                //nếu không tìm thấy hồ sơ thì thông báo không tìm thấy
-                if (HoSo == null)
-                {
-                    ViewBag.Error = "Không tìm thấy hồ sơ";
-                }
                 return PartialView(HoSo);
             }
         }
