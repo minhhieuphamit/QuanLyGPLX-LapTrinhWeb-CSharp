@@ -10,9 +10,10 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        MyDataDataContext data = new MyDataDataContext();
+
         public ActionResult Index()
         {
-            MyDataDataContext data = new MyDataDataContext();
             var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
             ViewBag.HangGPLX = new SelectList(Hang, "TenHang");
             return View();
@@ -26,14 +27,24 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            if (username == "admin" && password == "admin")
+            var user = data.Users.SingleOrDefault(p => p.username == username && p.password == password);
+            if (user != null)
             {
                 Session["username"] = username;
-                return RedirectToAction("DanhSachHoSo", "Admin/HoSo");
+                Session["password"] = password;
+                Session["role"] = user.idRole;
+                if (user.idRole == 1)
+                {
+                    return RedirectToAction("DanhSachHoSo", "Admin/HoSo");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                TempData["error"] = "Sai tên đăng nhập hoặc mật khẩu";
+                ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
                 return View();
             }
         }

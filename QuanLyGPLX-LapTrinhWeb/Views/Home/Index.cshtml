@@ -1,90 +1,78 @@
 ﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section tracuu{
     <script src="~/Scripts/TraCuu.js"></script>
 }
-
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Thông Tin Giấy Phép Lái Xe</title>
-    <link rel="stylesheet" href="~/Content/style.css">
-</head>
-
-<body>
-    <div id="main">
-        <div id="module-4" class="content">
-            <div class="container">
-                <div id="module-5" class="search-driving-license">
-                    <h2 class="search-heading">Tra Cứu Thông Tin Giấy phép lái xe</h2>
-                    <form class="search-form" name="form1" action="" method="post">
-                        <div class="search-row">
-                            <label class="label col-left">Số GPLX:</label>
-                            <input class="form-control col-right" type="text" id="MaGPLX" name="MaGPLX" placeholder="Nhập số giấy phép lái xe" style="display:inline-block">
-                        </div>
-                        <div class="search-row">
-                            <label class="label col-left">Hạng GPLX:</label>
-                            <select class="form-control col-right" id="HangGPLX" name="HangGPLX" style="display:inline-block">
-                                <option>----Select----</option>
-                                @foreach (var item in ViewBag.HangGPLX)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                        <button type="button" class="btn-send-contact" id="btnTraCuu" value="Tra cứu" name="submit">Tra cứu</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        @*<div id="module-8" class="content">
-                <div class="container">
-                    <div id="module-9" class="news">
-                        <div class="title">
-                            <h3 class="news-heading">Tin Tức </h3>
-                        </div>
-                        <li><a href="https://gplx.gov.vn/tin-tuc2/toan-bo-10-du-an-duong-bo-cap-bach-sap-can-dich.html">TOÀN BỘ 10 DỰ ÁN ĐƯỜNG BỘ CẤP BÁCH SẮP CÁN ĐÍCH</a></li><hr>
-                        <li><a href="https://gplx.gov.vn/tin-tuc2/bo-sung-mot-so-tuyen-quoc-lo-vao-quy-hoach.html">BỔ SUNG MỘT SỐ TUYẾN QUỐC LỘ VÀO QUY HOẠCH</a></li><hr>
-                        <li><a href="https://gplx.gov.vn/tin-tuc2/van-tai-lech-ve-duong-bo-doi-chi-phi-logistics.html">VẬN TẢI LỆCH VỀ ĐƯỜNG BỘ, ĐỘI CHI PHÍ LOGISTICS</a></li><hr>
-                        <li><a href="https://gplx.gov.vn/tin-tuc2/dieu-hanh-tuyen-truyen-luat-giao-thong-duong-bo.html">DIỄU HÀNH TUYÊN TRUYỀN LUẬT GIAO THÔNG ĐƯỜNG BỘ</a></li><hr>
-                        <li><a href="https://gplx.gov.vn/tin-tuc2/le-cong-bo-thoa-thuan-hop-tac-giua-tong-cuc-duong-bo-viet-nam-va-truong-dai-hoc-bach-khoa-ha-noi.html">LỄ CÔNG BỐ THỎA THUẬN HỢP TÁC GIỮA TỔNG CỤC ĐƯỜNG BỘ VIỆT NAM VÀ TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI</a></li><hr>
+<div id="main">
+    <div id="module-4" class="content">
+        <div class="container">
+            <div id="module-5" class="search-driving-license">
+                <h2 class="search-heading">Tra Cứu Thông Tin Giấy phép lái xe</h2>
+                <form class="search-form" name="form1" action="" method="post">
+                    <div class="search-row">
+                        <label class="label col-left">Số GPLX:</label>
+                        <input class="form-control col-right" type="text" id="MaGPLX" name="MaGPLX" placeholder="Nhập số giấy phép lái xe" style="display:inline-block">
                     </div>
-                </div>
-            </div>*@
-    </div>
-
-    <div id="partialModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thông tin hồ sơ</h5>
-                    <button type="button" id="btnCancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                </div>
+                    <div class="search-row">
+                        <label class="label col-left">Hạng GPLX:</label>
+                        <select class="form-control col-right" id="HangGPLX" name="HangGPLX" style="display:inline-block">
+                            <option>----Select----</option>
+                            @foreach (var item in ViewBag.HangGPLX)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="button" class="btn-send-contact" id="btnTraCuu" value="Tra cứu" name="submit">Tra cứu</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <div id="errorModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thông tin hồ sơ</h5>
-                    <button type="button" id="btnCancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    @*<div id="module-8" class="content">
+            <div class="container">
+                <div id="module-9" class="news">
+                    <div class="title">
+                        <h3 class="news-heading">Tin Tức </h3>
+                    </div>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/toan-bo-10-du-an-duong-bo-cap-bach-sap-can-dich.html">TOÀN BỘ 10 DỰ ÁN ĐƯỜNG BỘ CẤP BÁCH SẮP CÁN ĐÍCH</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/bo-sung-mot-so-tuyen-quoc-lo-vao-quy-hoach.html">BỔ SUNG MỘT SỐ TUYẾN QUỐC LỘ VÀO QUY HOẠCH</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/van-tai-lech-ve-duong-bo-doi-chi-phi-logistics.html">VẬN TẢI LỆCH VỀ ĐƯỜNG BỘ, ĐỘI CHI PHÍ LOGISTICS</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/dieu-hanh-tuyen-truyen-luat-giao-thong-duong-bo.html">DIỄU HÀNH TUYÊN TRUYỀN LUẬT GIAO THÔNG ĐƯỜNG BỘ</a></li><hr>
+                    <li><a href="https://gplx.gov.vn/tin-tuc2/le-cong-bo-thoa-thuan-hop-tac-giua-tong-cuc-duong-bo-viet-nam-va-truong-dai-hoc-bach-khoa-ha-noi.html">LỄ CÔNG BỐ THỎA THUẬN HỢP TÁC GIỮA TỔNG CỤC ĐƯỜNG BỘ VIỆT NAM VÀ TRƯỜNG ĐẠI HỌC BÁCH KHOA HÀ NỘI</a></li><hr>
                 </div>
-                <div class="modal-body">
-                    <div class="text-center text-danger">Hồ sơ vừa tìm hiện tại không tồn tại trên cơ sở dữ liệu!!</div>
-                </div>
+            </div>
+        </div>*@
+</div>
+
+<div id="partialModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin hồ sơ</h5>
+                <button type="button" id="btnCancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+<div id="errorModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin hồ sơ</h5>
+                <button type="button" id="btnCancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center text-danger">Hồ sơ vừa tìm hiện tại không tồn tại trên cơ sở dữ liệu!!</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 

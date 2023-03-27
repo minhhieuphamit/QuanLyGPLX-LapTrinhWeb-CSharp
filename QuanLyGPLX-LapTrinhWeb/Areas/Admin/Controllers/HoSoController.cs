@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using QuanLyGPLX_LapTrinhWeb.App_Start;
 
 namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 {
@@ -15,7 +16,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
         // GET: Admin/HoSo
         MyDataDataContext data = new MyDataDataContext();
 
+        #region danh sách hồ sơ
         /*---------Danh sách hồ sơ---------*/
+        [AdminAuthorize(idChucNang = 1)]
         public ActionResult DanhSachHoSo(int? page, string search)
         {
             if (page == null)
@@ -69,9 +72,10 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
                 }
                 return View(all_HoSo.ToPagedList(pageNum, pageSize));
             }
-
         }
+        #endregion
 
+        #region chi tiết hồ sơ
         /*---------Chi tiết hồ sơ---------*/
         public ActionResult Details(string id)
         {
@@ -104,7 +108,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
                           }).First();
             return View(D_HoSo);
         }
+        #endregion
 
+        #region chỉnh sửa hồ sơ
         /*---------Chỉnh sửa hồ sơ---------*/
         public ActionResult Edit(string id)
         {
@@ -154,7 +160,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             }
             return this.Edit(id);
         }
+        #endregion
 
+        #region xóa hồ sơ
         /*---------Xóa hồ sơ---------*/
         public ActionResult Delete(string id)
         {
@@ -182,7 +190,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             }
             return Json(new { status = "Success" });
         }
+        #endregion
 
+        #region thêm hồ sơ
         /*---------Thêm mới hồ sơ---------*/
         [HttpPost]
         public JsonResult GetSoCCCD(string Prefix)
@@ -244,7 +254,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             }
             return this.Create();
         }
+        #endregion
 
+        #region process upload
         /*---------Upload hình ảnh hồ sơ---------*/
         public string ProcessUpload(HttpPostedFileBase file)
         {
@@ -255,5 +267,14 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return "/Content/images/" + file.FileName;
         }
+        #endregion
+
+        #region access denied
+        /*---------Access denied---------*/
+        public ActionResult AccessDenied()
+        {
+            return View();
+        }
+        #endregion
     }
 }
