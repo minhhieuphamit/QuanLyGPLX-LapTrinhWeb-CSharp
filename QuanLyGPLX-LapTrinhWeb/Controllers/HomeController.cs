@@ -52,7 +52,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
         public ActionResult Logout()
         {
             Session["username"] = null;
-            return RedirectToAction("Login");
+            Session["password"] = null;
+            Session["role"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

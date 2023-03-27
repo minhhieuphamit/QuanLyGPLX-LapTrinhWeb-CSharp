@@ -77,6 +77,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
         #region chi tiết hồ sơ
         /*---------Chi tiết hồ sơ---------*/
+        [AdminAuthorize(idChucNang = 1)]
         public ActionResult Details(string id)
         {
             var D_HoSo = (from hs in data.HoSoGPLXes
@@ -112,6 +113,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
         #region chỉnh sửa hồ sơ
         /*---------Chỉnh sửa hồ sơ---------*/
+        [AdminAuthorize(idChucNang = 1)]
         public ActionResult Edit(string id)
         {
             var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
@@ -129,6 +131,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             return View(E_MaGPLX);
         }
 
+        [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id, FormCollection collection)
@@ -164,12 +167,14 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
         #region xóa hồ sơ
         /*---------Xóa hồ sơ---------*/
+        [AdminAuthorize(idChucNang = 1)]
         public ActionResult Delete(string id)
         {
             var D_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
             return View(D_MaGPLX);
         }
 
+        [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
@@ -179,6 +184,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             return RedirectToAction("DanhSachHoSo");
         }
 
+        [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         public ActionResult DeleteHoSo(string id)
         {
@@ -194,6 +200,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
         #region thêm hồ sơ
         /*---------Thêm mới hồ sơ---------*/
+        [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         public JsonResult GetSoCCCD(string Prefix)
         {
@@ -206,6 +213,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             return Json(SoCCCD, JsonRequestBehavior.AllowGet);
         }
 
+        [AdminAuthorize(idChucNang = 1)]
         public ActionResult Create()
         {
             var Hang = data.HangGPLXes.Select(p => p.MaHang).ToList();
@@ -216,7 +224,8 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
             return View();
         }
-
+        
+        [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
