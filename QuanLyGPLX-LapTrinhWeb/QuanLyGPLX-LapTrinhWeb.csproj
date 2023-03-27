@@ -201,6 +201,7 @@
     <Content Include="Content\Login\js\popper.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\sub.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
