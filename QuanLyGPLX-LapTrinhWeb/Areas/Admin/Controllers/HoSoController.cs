@@ -188,12 +188,9 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult DeleteHoSo(string id)
         {
-            using (var context = new MyDataDataContext())
-            {
-                var MaGPLX = context.HoSoGPLXes.Where(a => a.MaGPLX == id).FirstOrDefault();
-                context.HoSoGPLXes.DeleteOnSubmit(MaGPLX);
-                context.SubmitChanges();
-            }
+            var MaGPLX = data.HoSoGPLXes.Where(a => a.MaGPLX == id).FirstOrDefault();
+            data.HoSoGPLXes.DeleteOnSubmit(MaGPLX);
+            data.SubmitChanges();
             return Json(new { status = "Success" });
         }
         #endregion
@@ -224,7 +221,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
             return View();
         }
-        
+
         [AdminAuthorize(idChucNang = 1)]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -275,14 +272,6 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return "/Content/images/" + file.FileName;
-        }
-        #endregion
-
-        #region access denied
-        /*---------Access denied---------*/
-        public ActionResult AccessDenied()
-        {
-            return View();
         }
         #endregion
     }

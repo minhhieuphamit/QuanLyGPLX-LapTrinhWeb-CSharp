@@ -8,7 +8,7 @@
             data: { MaGPLX: MaGPLX, HangGPLX: HangGPLX },
             dataType: "html",
             success: function (response) {
-                $("#partialModal").find(".modal-body").html(response);
+                $("#partialModal .modal-body").html(response);
                 $("#partialModal").modal('show');
             },
             error: function (response) {

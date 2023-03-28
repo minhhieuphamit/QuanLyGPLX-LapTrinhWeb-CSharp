@@ -155,7 +155,7 @@ $(document).ready(function () {
     })
 });
 
-//Delete modal popup
+//Delete hồ sơ gplx modal popup
 function DeleteHoSo(id) {
     $("#myModal").modal('show');
     $("#btnDelete").click(function () {
@@ -166,9 +166,29 @@ function DeleteHoSo(id) {
             success: function (result) {
                 $("#myModal").modal("hide");
                 $("#row_" + id).remove();
+                location.reload();
             }
         })
-        location.reload();
+    });
+    $("#btnCancel").click(function () {
+        $("#myModal").modal("hide");
+    });
+}
+
+//Delete trung tâm sát hạch modal popup
+function DeleteTrungTam(id) {
+    $("#myModal").modal('show');
+    $("#btnDelete").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/TrungTamSatHach/DeleteTrungTam",
+            data: { Id: id },
+            success: function (result) {
+                $("#myModal").modal("hide");
+                $("#row_" + id).remove();
+                location.reload();
+            }
+        })
     });
     $("#btnCancel").click(function () {
         $("#myModal").modal("hide");

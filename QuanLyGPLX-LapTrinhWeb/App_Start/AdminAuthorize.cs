@@ -21,7 +21,7 @@ namespace QuanLyGPLX_LapTrinhWeb.App_Start
                 {
                     if (filterContext.HttpContext.Session["role"].ToString() != "1")
                     {
-                        filterContext.Result = new RedirectResult("~/Admin/HoSo/AccessDenied");
+                        filterContext.Result = new RedirectResult("~/Admin/AccessDenied/ConnectError");
                     }
                 }
             }
