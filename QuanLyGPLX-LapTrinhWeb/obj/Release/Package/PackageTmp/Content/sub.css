@@ -1,0 +1,397 @@
+﻿@charset "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ti {
+    color: #fff;
+}
+
+.container {
+    width: 1400px;
+    padding: 0;
+}
+
+.col-left {
+    width: 200px;
+    padding: 10px;
+}
+
+.col-right {
+    width: 450px;
+    margin: 0 20px;
+}
+
+.container-lg,
+.container-fluid {
+    width: 1400px;
+    margin: auto;
+}
+
+    .container-lg thead th,
+    .container-fluid thead th {
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    .container-lg tbody td,
+    .container-fluid tbody td {
+        vertical-align: baseline;
+        padding: 10px;
+    }
+
+        .container-lg tbody td button,
+        .container-fluid tbody td button {
+            display: block;
+            margin: 4px;
+        }
+
+.modal {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
+.pl-10.pr-10 {
+    width: 444px;
+    display: inline-block;
+}
+
+    .pl-10.pr-10.special {
+        width: 888px !important;
+        display: inline-block;
+    }
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content .search-driving-license {
+    background: url(images/license_background.png);
+}
+
+.content .news li {
+    list-style: none;
+    padding: 0 10px;
+}
+
+.content .news a {
+    text-decoration: none;
+    color: #000;
+    padding: 4px;
+    font-weight: bold;
+}
+
+.content .search-heading {
+    padding: 16px 10px;
+}
+
+.content .search-row {
+    margin-bottom: 16px;
+}
+
+.content .btn-send-contact {
+    margin: 8px;
+    padding: 4px;
+    background: #fab000;
+    color: #fff;
+    border: none;
+    width: 160px;
+    font-weight: 550;
+}
+
+    .content .btn-send-contact:hover {
+        background-color: #ccc;
+        color: #000;
+    }
+
+.content .label {
+    display: inline-block;
+}
+
+.content .form-control {
+    padding: 4px;
+}
+
+.content .news .title {
+    background-color: #1f8bc9;
+}
+
+.content .news-heading {
+    background-color: #202878;
+    display: inline-block;
+    color: #fff;
+    padding: 6px 10px;
+    clip-path: polygon(0% 0%, 88% 0, 100% 50%, 88% 100%, 0% 100%);
+}
+
+.header {
+    background-color: #202878;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+    .header .container {
+        background: url(/assets/img/background.jpg);
+    }
+
+    .header .logo {
+        padding: 10px 0;
+    }
+
+    .header .navigation {
+        background-color: #202878;
+    }
+
+    .header .nav {
+        list-style: none;
+        display: inline-block;
+    }
+
+        .header .nav li {
+            position: relative;
+            display: inline-block;
+        }
+
+        .header .nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 550;
+        }
+
+            .header .navigation .ti:hover,
+            .header .nav a:hover {
+                background-color: #fff;
+                color: black;
+            }
+
+    .header .navigation .ti {
+        float: right;
+        font-size: 20px;
+        line-height: 45.6px;
+        font-weight: 600;
+    }
+/*=================================================*/
+
+section {
+    width: 100%;
+    display: inline-block;
+    background: #333;
+    height: 50vh;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.footer-distributed {
+    background: #202878;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 20px 50px;
+}
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    /* Footer left */
+
+    .footer-distributed .footer-left {
+        width: 55%;
+    }
+
+    /* The company logo */
+
+    .footer-distributed h3 {
+        color: #ffffff;
+        margin: 0;
+    }
+
+        .footer-distributed h3 span {
+            color: lightseagreen;
+        }
+
+    /* Footer links */
+
+    .footer-distributed .footer-links {
+        color: #ffffff;
+        margin: 20px 0 12px;
+        padding: 0;
+    }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            font-weight: 400;
+            text-decoration: none;
+            color: inherit;
+        }
+
+    .footer-distributed .footer-company-name {
+        color: #222;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    /* Footer Center */
+
+    .footer-distributed .footer-center {
+        width: 40%;
+    }
+
+        .footer-distributed .footer-center i {
+            background-color: #fff;
+            color: #000;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+            .footer-distributed .footer-center i.fa-envelope {
+                font-size: 17px;
+                line-height: 38px;
+            }
+
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            font-weight: 400;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+            .footer-distributed .footer-center p span {
+                display: block;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 2;
+            }
+
+            .footer-distributed .footer-center p a {
+                color: #ffffff;
+                text-decoration: none;
+            }
+
+    .footer-distributed .footer-links a:before {
+        content: "|";
+        font-weight: 300;
+        font-size: 20px;
+        left: 0;
+        color: #fff;
+        display: inline-block;
+        padding-right: 5px;
+    }
+
+    .footer-distributed .footer-links .link-1:before {
+        content: none;
+    }
+
+
+    .footer-distributed .footer-project-about {
+        line-height: 20px;
+        color: #ffff;
+        font-size: 13px;
+        font-weight: normal;
+        margin: 0;
+    }
+
+        .footer-distributed .footer-project-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+    .footer-distributed .footer-icons {
+        margin-top: 25px;
+    }
+
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #ffff;
+            border-radius: 2px;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            line-height: 35px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+    .footer-distributed {
+        font: bold 14px sans-serif;
+    }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: block;
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+}
+
+label.error {
+    font-size: 12px;
+    color: red;
+}
+

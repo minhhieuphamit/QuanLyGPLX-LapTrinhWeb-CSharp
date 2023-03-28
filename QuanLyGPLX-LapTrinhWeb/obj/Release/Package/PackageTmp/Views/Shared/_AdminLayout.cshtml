@@ -15,20 +15,33 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">
+            <div class="sidebar-heading border-bottom bg-light" style="height:58px">
                 <i class="fa-solid fa-car"></i>
-                Hệ thống GPLX
+                Quản lý GPLX
             </div>
+            @*hiển thị session*@
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">
+                <div class="list-group-item list-group-item-action list-group-item-light p-3">
+                    <i class="fa-solid fa-user"></i>
+                    Xin chào
+                    <strong>
+                        @Session["nameUser"]
+                    </strong>
+                    !!
+                </div>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Home/Index" )">
                     <i class="fa-solid fa-house"></i>
                     Trang chủ
                 </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("DanhSachHoSo", "HoSo")">
                     <i class="fa-solid fa-table-list"></i>
-                    Danh sách
+                    Danh sách hồ sơ
                 </a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("DanhSachTrungTam", "TrungTamSatHach")">
+                    <i class="fa-solid fa-table-list"></i>
+                    Danh sách TTSH
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Home/Logout">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     Đăng xuất
                 </a>
@@ -37,12 +50,11 @@
         <!-- Page content wrapper-->
         <div id="page-content-wrapper">
             <!-- Top navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="height:58px">
                 <div class="container-fluid">
-                    <button class="btn btn-primary" id="sidebarToggle">
-                        <i class="fa-solid fa-bars"></i>
+                    <button class="btn btn-outline" id="sidebarToggle">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 </div>
             </nav>
             <!-- Page content-->

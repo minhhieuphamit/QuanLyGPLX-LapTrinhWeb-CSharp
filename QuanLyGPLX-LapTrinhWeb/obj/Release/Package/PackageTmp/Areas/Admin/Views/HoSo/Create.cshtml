@@ -9,6 +9,11 @@
     <script src="~/Scripts/Scripts.js"></script>
 }
 
+@if (Session["username"] == null)
+{
+    Response.Redirect("/Home/Login");
+}
+
 <h2>Thêm mới hồ sơ giấy phép lái xe</h2>
 
 @using (Html.BeginForm())

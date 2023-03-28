@@ -45,7 +45,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
             }
             else
             {
-                ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
+                TempData["error"] = "Sai tên đăng nhập hoặc mật khẩu";
                 return View();
             }
         }
