@@ -3,10 +3,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 }
-
 html {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     line-height: 1.6;
 }
@@ -190,7 +189,7 @@ html {
             color: #fff;
             padding: 10px 20px;
             display: block;
-            font-weight: 550;
+            font-weight: 750;
         }
 
             .header .navigation .ti:hover,
