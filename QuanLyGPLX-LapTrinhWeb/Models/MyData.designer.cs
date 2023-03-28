@@ -22,7 +22,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="GPLX")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db_a96b98_qlgplx")]
 	public partial class MyDataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -68,7 +68,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
     partial void DeleteUser(User instance);
         #endregion
         public MyDataDataContext() :
-                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["GPLXConnectionString"].ConnectionString, mappingSource)
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["qlgplxConnectionString"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
@@ -1913,7 +1913,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nameRole", DbType="VarChar(500)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nameRole", DbType="NVarChar(500)")]
 		public string nameRole
 		{
 			get

@@ -213,11 +213,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\MyData.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>MyData.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\Login\css\.DS_Store" />
     <Content Include="Content\Login\css\bootstrap.min.css.map" />
     <Content Include="Content\Login\fonts\.DS_Store" />
@@ -365,6 +360,11 @@
     <Content Include="Areas\Admin\Views\TrungTamSatHach\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TrungTamSatHach\Create.cshtml" />
     <Content Include="Areas\Admin\Views\AccessDenied\ConnectError.cshtml" />
+    <Content Include="Models\MyData.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>MyData.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
