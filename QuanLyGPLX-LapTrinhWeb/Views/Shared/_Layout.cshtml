@@ -40,12 +40,17 @@
                     @if (Session["username"] != null)
                     {
                         <li>@Html.ActionLink("Hồ sơ", "DanhSachHoSo", "Admin/HoSo", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Session["nameUser"]</li>
-                        <li>@Html.ActionLink("Đăng xuất", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <div class="sub-nav">
+                            <li>@Session["nameUser"]
+                                <ul class="subnav">
+                                    <li style="padding: 0;">@Html.ActionLink("Đăng xuất", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                        </div>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Đăng nhập", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li style="float:right">@Html.ActionLink("Đăng nhập", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                     @*<li>@Html.ActionLink("Đăng nhập", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                 </ul>

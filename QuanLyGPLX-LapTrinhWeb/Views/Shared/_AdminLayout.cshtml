@@ -21,14 +21,7 @@
             </div>
             @*hiển thị session*@
             <div class="list-group list-group-flush">
-                <div class="list-group-item list-group-item-action list-group-item-light p-3">
-                    <i class="fa-solid fa-user"></i>
-                    Xin chào
-                    <strong>
-                        @Session["nameUser"]
-                    </strong>
-                    !!
-                </div>
+                
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Home/Index" )">
                     <i class="fa-solid fa-house"></i>
                     Trang chủ
@@ -38,7 +31,7 @@
                     Danh sách hồ sơ
                 </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@Url.Action("DanhSachTrungTam", "TrungTamSatHach")">
-                    <i class="fa-solid fa-table-list"></i>
+                    <i class="fa-solid fa-table"></i>
                     Danh sách TTSH
                 </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Home/Logout">
@@ -55,6 +48,14 @@
                     <button class="btn btn-outline" id="sidebarToggle">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div style=" display: flex; justify-content: end;">
+                        <i class="fa-solid fa-user"></i>
+                        Xin chào 
+                        <strong>
+                            @Session["nameUser"]
+                        </strong>
+                        !!
+                    </div>
                 </div>
             </nav>
             <!-- Page content-->
