@@ -373,8 +373,9 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <None Include="Properties\PublishProfiles\QuanLyGPLX - Web Deploy.pubxml" />
     <Content Include="Views\Home\TraCuuHoSo.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <None Include="Properties\PublishProfiles\QuanLyGPLX - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

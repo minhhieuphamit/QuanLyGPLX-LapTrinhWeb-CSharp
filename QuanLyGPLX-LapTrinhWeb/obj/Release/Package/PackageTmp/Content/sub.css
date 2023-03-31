@@ -3,10 +3,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 }
-
 html {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     line-height: 1.6;
 }
@@ -177,6 +176,7 @@ html {
     .header .nav {
         list-style: none;
         display: inline-block;
+        width:100%;
     }
 
         .header .nav li {
@@ -189,7 +189,7 @@ html {
             color: #fff;
             padding: 10px 20px;
             display: block;
-            font-weight: 550;
+            font-weight: 750;
         }
 
             .header .navigation .ti:hover,
@@ -203,6 +203,31 @@ html {
         font-size: 20px;
         line-height: 45.6px;
         font-weight: 600;
+    }
+    .header .sub-nav  {
+        float:right;
+    }
+        .header .sub-nav li {
+            color: #fff;
+            padding: 10px 20px;
+            font-weight: 650;
+        }
+        .header .sub-nav .subnav {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            min-width: 160px;
+            top: 100%;
+        }
+    .header li:hover .subnav  {
+        display: block;
+        padding:0;
+    }
+    .header .subnav li {
+        color: #fff;
+        background-color: #202878;
+        display: block;
     }
 /*=================================================*/
 

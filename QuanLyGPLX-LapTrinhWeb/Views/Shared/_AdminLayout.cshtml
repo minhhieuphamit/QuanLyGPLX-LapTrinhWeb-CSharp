@@ -21,7 +21,7 @@
             </div>
             @*hiển thị session*@
             <div class="list-group list-group-flush">
-                
+
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Home/Index" )">
                     <i class="fa-solid fa-house"></i>
                     Trang chủ
@@ -49,11 +49,9 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div style=" display: flex; justify-content: end;">
-                        <i class="fa-solid fa-user"></i>
-                        Xin chào 
-                        <strong>
-                            @Session["nameUser"]
-                        </strong>
+                        <i class="fa-solid fa-user" style="padding:4px"></i>
+                        Xin chào
+                        <strong style="padding-left:4px">@Session["nameUser"]</strong>
                         !!
                     </div>
                 </div>

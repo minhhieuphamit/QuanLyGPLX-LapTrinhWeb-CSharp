@@ -109,7 +109,7 @@
   </Table>
   <Table Name="dbo.[User]" Member="Users">
     <Type Name="User">
-      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nameUser" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="password" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />

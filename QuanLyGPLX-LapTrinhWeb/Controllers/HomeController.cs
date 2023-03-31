@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace QuanLyGPLX_LapTrinhWeb.Controllers
@@ -56,6 +57,48 @@ namespace QuanLyGPLX_LapTrinhWeb.Controllers
             Session["password"] = null;
             Session["role"] = null;
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(FormCollection formcollection, User user)
+        {
+            var nameUser = formcollection["nameUser"];
+            var username = formcollection["username"];
+            var password = formcollection["password"];
+
+            if (string.IsNullOrEmpty(username))
+            {
+                TempData["Loi1"] = "Phải nhập tên đăng nhập";
+            }
+            else if (string.IsNullOrEmpty(password))
+            {
+                TempData["Loi2"] = "Phải nhập mật khẩu";
+            }
+            else if (string.IsNullOrEmpty(nameUser))
+            {
+                TempData["Loi3"] = "Phải nhập tên người dùng";
+            }
+            else if (data.Users.Count(p => p.username == username) > 0)
+            {
+                TempData["Loi4"] = "Tên đăng nhập đã tồn tại";
+            }
+            else
+            {
+                user.nameUser = nameUser;
+                user.username = username;
+                user.password = password;
+                user.idRole = 2;
+                data.Users.InsertOnSubmit(user);
+                data.SubmitChanges();
+                return RedirectToAction("Login");
+            }
+            return this.Register();
         }
 
         [HttpPost]

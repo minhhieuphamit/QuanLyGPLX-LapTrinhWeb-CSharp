@@ -10,18 +10,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="~/Content/Login/fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="~/Content/Login/css/owl.carousel.min.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Content/Login/css/bootstrap.min.css">
-
     <!-- Style -->
     <link rel="stylesheet" href="~/Content/Login/css/style.css">
-
     <title>Login</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -58,7 +57,7 @@
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                                 </div>
                                 @*Đăng ký*@
-                                    <span class="ml-auto" style="float:right;margin-bottom:10px"><a href="#">Đăng ký</a></span>
+                                <span class="ml-auto" style="float:right;margin-bottom:10px"><a href="@Url.Action("Register", "Home")">Đăng ký</a></span>
 
                                 <div class="form-text">
                                     <p class="text-danger">
@@ -66,34 +65,13 @@
                                     </p>
                                 </div>
 
-                                <button type="submit" class="btn btn-block btn-primary" >Log In</button>
-
-                                <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
-
-                                <div class="social-login">
-                                    <a href="#" class="facebook">
-                                        <span class="icon-facebook mr-3"></span>
-                                    </a>
-                                    <a href="#" class="twitter">
-                                        <span class="icon-twitter mr-3"></span>
-                                    </a>
-                                    <a href="#" class="google">
-                                        <span class="icon-google mr-3"></span>
-                                    </a>
-                                </div>
+                                <button type="submit" class="btn btn-block btn-primary">Log In</button>
                             </form>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>

@@ -72,7 +72,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
         {
             OnCreated();
         }
-
+		
         public MyDataDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -2381,7 +2381,7 @@ namespace QuanLyGPLX_LapTrinhWeb.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUser", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idUser", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int idUser
 		{
 			get
