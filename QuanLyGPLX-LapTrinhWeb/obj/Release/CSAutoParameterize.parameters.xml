@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="qlgplxConnectionString-Web.config Connection String" description="qlgplxConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=sql8005.site4now.net;Initial Catalog=db_a96b98_qlgplx;Persist Security Info=True;User ID=db_a96b98_qlgplx_admin;Password=hutech@123" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="H:\\LapTrinhWeb\\QuanLyGPLX-LapTrinhWeb\\QuanLyGPLX-LapTrinhWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='qlgplxConnectionString']/@connectionString" />
-  </parameter>
-  <parameter name="db_a96b98_qlgplxConnectionString-Web.config Connection String" description="db_a96b98_qlgplxConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=sql8005.site4now.net;Initial Catalog=db_a96b98_qlgplx;Persist Security Info=True;User ID=db_a96b98_qlgplx_admin;Password=hutech@123" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="H:\\LapTrinhWeb\\QuanLyGPLX-LapTrinhWeb\\QuanLyGPLX-LapTrinhWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='db_a96b98_qlgplxConnectionString']/@connectionString" />
-  </parameter>
-</parameters>
