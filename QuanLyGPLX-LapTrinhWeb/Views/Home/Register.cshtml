@@ -45,15 +45,15 @@
                                     <h3>Register</h3>
                                 </div>
                                 <div class="form-group first">
-                                    @Html.EditorFor(model => model.nameUser, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ và tên" } })
+                                    @Html.EditorFor(model => model.nameUser, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ và tên", @required = "required" } })
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username" } })
+                                    @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username", @required = "required" } })
                                 </div>
 
                                 <div class="form-group last mb-4">
-                                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Password" } })
+                                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Password", @required = "required" } })
                                 </div>
 
                                 <div class="form-text">
