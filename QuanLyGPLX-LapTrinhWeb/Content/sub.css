@@ -208,14 +208,14 @@ html {
         float:right;
     }
         .header .sub-nav li {
-            color: #fff;
+            color: #000;
             padding: 10px 20px;
             font-weight: 650;
         }
         .header .sub-nav .subnav {
             display: none;
             position: absolute;
-            background-color: #fff;
+            background-color: #000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             min-width: 160px;
             top: 100%;
@@ -225,7 +225,7 @@ html {
         padding:0;
     }
     .header .subnav li {
-        color: #fff;
+        color: #000;
         background-color: #202878;
         display: block;
     }
@@ -418,5 +418,9 @@ section {
 label.error {
     font-size: 12px;
     color: red;
+}
+
+.dropdown-item:hover{
+    color:red;
 }
 

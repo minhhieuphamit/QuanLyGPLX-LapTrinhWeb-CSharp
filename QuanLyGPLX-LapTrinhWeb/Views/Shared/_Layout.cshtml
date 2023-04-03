@@ -41,13 +41,13 @@
                     @if (Session["username"] != null)
                     {
                         <li>@Html.ActionLink("Hồ sơ", "DanhSachHoSo", "Admin/HoSo", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li style="float:right" class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li style="float:right;width:180px" class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="transform: translateX(-20px);">
                                 <i class="fas fa-user"></i>
                                 @Session["nameUser"]
                             </a>
                             <ul class="dropdown-menu" style="color:red">
-                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Home")" style="color: black;">Đăng xuất</a></li>
                             </ul>
                         </li>
                     }
