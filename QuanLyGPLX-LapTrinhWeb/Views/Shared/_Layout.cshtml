@@ -37,7 +37,7 @@
             </div>
             <div id="module-3" class="navigation">
                 <ul class="nav">
-                    <li>@Html.ActionLink("Hệ thống GPLX", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     @if (Session["username"] != null)
                     {
                         <li>@Html.ActionLink("Hồ sơ", "DanhSachHoSo", "Admin/HoSo", new { area = "" }, new { @class = "nav-link" })</li>

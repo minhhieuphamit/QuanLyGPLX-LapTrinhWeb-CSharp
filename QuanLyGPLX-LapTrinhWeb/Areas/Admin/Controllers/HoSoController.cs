@@ -124,10 +124,10 @@ namespace QuanLyGPLX_LapTrinhWeb.Areas.Admin.Controllers
 
             var E_MaGPLX = data.HoSoGPLXes.First(m => m.MaGPLX == id);
             var E_NgayCap = data.HoSoGPLXes.First(m => m.MaGPLX == id);
-            ViewBag.NgayCap = String.Format("{0:dd/MM/yyyy}", E_NgayCap.NgayCapGPLX);
+            ViewBag.NgayCap = String.Format("{0:MM/dd/yyyy}", E_NgayCap.NgayCapGPLX);
 
             var E_NgayHetHan = data.HoSoGPLXes.First(m => m.MaGPLX == id);
-            ViewBag.NgayHetHan = String.Format("{0:dd/MM/yyyy}", E_NgayHetHan.NgayHetHanGPLX);
+            ViewBag.NgayHetHan = String.Format("{0:MM/dd/yyyy}", E_NgayHetHan.NgayHetHanGPLX);
             return View(E_MaGPLX);
         }
 
