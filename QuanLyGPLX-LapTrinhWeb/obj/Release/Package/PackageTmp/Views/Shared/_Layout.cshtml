@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <title>Trang chủ - Trang tra cứu giấy phép lái xe</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/sub.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" style="background-color: #202878;">
+            <div class="container">
+                @Html.ActionLink("Hệ thống GPLX", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Hồ sơ", "DanhSachHoSo", "Admin/HoSo", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Đăng nhập", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>*@
+    <div id="module-1" class="header">
+        <div class="container">
+            <div id="module-2" class="logo">
+                <a href="@Url.Action("Index", "Home")" title="Trang chủ">
+                    <img class=" logo-banner" src="~/Content/images/logo.png" alt="Logo">
+                </a>
+            </div>
+            <div id="module-3" class="navigation">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    @if (Session["username"] != null)
+                    {
+                        <li>@Html.ActionLink("Hồ sơ", "DanhSachHoSo", "Admin/HoSo", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li style="float:right;width:180px" class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="transform: translateX(-20px);">
+                                <i class="fas fa-user"></i>
+                                @Session["nameUser"]
+                            </a>
+                            <ul class="dropdown-menu" style="color:red">
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Home")" style="color: black;">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="float:right">@Html.ActionLink("Đăng nhập", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <br />
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>Hệ thống quản lý GPLX <i class="fa-solid fa-traffic-light"></i></h3><hr />
+            <p class="footer-project-about">
+                <span>Về hệ thống</span>
+                Hệ thống cho phép người dùng tra cứu và xem tin tức về tin tức giao thông
+            </p>
+
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/ptt27092002" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="https://github.com/minhhieuphamit/QuanLyGPLX-LapTrinhWeb" target="_blank"><i class="fa-brands fa-square-github"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-phone"></i>
+                <a style="text-decoration: none; color: #ffffff; "> 0706068259 | 0785924515</a>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:minhhieupham@gmail.com">minhhieupham2002@gmail.com</a></p>
+            </div>
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p>
+                    <span>
+                        <a href="https://goo.gl/maps/Ls7Fa6RjD4qvoKhQ9">Thủ Đức Campus Hutech Khu E</a>
+                    </span>
+                </p>
+            </div>
+            <br />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.6052124401169!2d106.78458809852604!3d10.855560627276397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2sThu%20Duc%20Campus%20Hutech%20khu%20E!5e0!3m2!1svi!2s!4v1679802192657!5m2!1svi!2s" width="300" height="200" style="border:0; margin-left:30px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="footer-right">
+
+        </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    @RenderSection("tracuu", required: false)
+</body>
+</html>
